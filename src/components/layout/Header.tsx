@@ -40,7 +40,7 @@ const NavItems = styled.ul<{ isOpen: boolean }>`
     top: 0;
     left: 0;
     width: 100%;
-    height: 40vh;
+    height: 60vh;
     background-color: ${theme.colors.primary};
     flex-direction: column;
     justify-content: center;
