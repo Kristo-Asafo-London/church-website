@@ -3,7 +3,7 @@ import { theme } from '../../styles/theme';
 import { Button } from '../common/Button';
 
 const HeroContainer = styled.section`
-  background: linear-gradient(135deg, ${theme.colors.primary} 0%, ${theme.colors.secondary} 100%);
+  background: linear-gradient(15deg, ${theme.colors.primary} 0%, ${theme.colors.secondary} 0%);
   color: ${theme.colors.white};
   padding: 6rem 2rem;
   text-align: center;
