@@ -4,6 +4,7 @@ import { theme } from '../../styles/theme';
 interface ButtonProps {
   primary?: boolean;
   secondary?: boolean;
+  onClick?: () => void; // Add onClick prop
 }
 
 export const Button = styled.button<ButtonProps>`

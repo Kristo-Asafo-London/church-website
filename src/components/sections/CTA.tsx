@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 import { Button } from '../common/Button';
+import { useNavigate } from 'react-router-dom';
 
 const CTAContainer = styled.section`
   background-color: ${theme.colors.secondary};
@@ -22,19 +23,28 @@ const CTAContent = styled.div`
     margin-bottom: ${theme.spacing.xlarge};
     font-size: 1.1rem;
     opacity: 0.9;
+    color: ${theme.colors.white}; // Moved from inline style to here
   }
 `;
 
 export const CTA = () => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/hire-me'); // Navigate to hire-me page
+  };
+
   return (
     <CTAContainer>
       <CTAContent>
         <h2>Ready to Transform Your Business?</h2>
-        <p style={{color: "white"}}>
+        <p>
           Schedule a free consultation with one of our experts to discuss how we can help 
           your business achieve its goals and overcome challenges.
         </p>
-        <Button primary>Get Your Free Consultation</Button>
+        <Button primary onClick={handleButtonClick}>
+          Get Your Free Consultation
+        </Button>
       </CTAContent>
     </CTAContainer>
   );
