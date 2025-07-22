@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { theme } from '../../styles/theme';
 
 const FooterContainer = styled.footer`
@@ -23,10 +24,27 @@ const FooterSection = styled.div`
     font-size: 1.2rem;
   }
   
-  p, a {
+  p {
     color: ${theme.colors.textLight};
     margin-bottom: ${theme.spacing.small};
     display: block;
+  }
+`;
+
+const FooterLink = styled(NavLink)`
+  color: ${theme.colors.textLight};
+  margin-bottom: ${theme.spacing.small};
+  display: block;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${theme.colors.accent};
+  }
+
+  &.active {
+    color: ${theme.colors.accent};
+    font-weight: 500;
   }
 `;
 
@@ -49,11 +67,11 @@ export const Footer = () => {
         
         <FooterSection>
           <h3>Quick Links</h3>
-          <a href="/">Home</a>
-          <a href="/about">About Us</a>
-          <a href="/services">Services</a>
-          <a href="/hire-me">Hire Me</a>
-          <a href="/contact">Contact</a>
+          <FooterLink to="/">Home</FooterLink>
+          <FooterLink to="/about">About Us</FooterLink>
+          <FooterLink to="/testimonials">Testimonials</FooterLink>
+          <FooterLink to="/hire-me">Hire Me</FooterLink>
+          <FooterLink to="/contact">Contact</FooterLink>
         </FooterSection>
         
         <FooterSection>
