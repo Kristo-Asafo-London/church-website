@@ -77,7 +77,7 @@ export const Footer = () => {
         <FooterSection>
           <h3>Contact Info</h3>
           <p>123 Business Ave</p>
-          <p>New York, NY 10001</p>
+          <p>London, Postcode</p>
           <p>Email: info@consultpro.com</p>
           <p>Phone: (123) 456-7890</p>
         </FooterSection>

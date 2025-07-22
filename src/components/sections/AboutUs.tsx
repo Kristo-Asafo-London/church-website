@@ -98,7 +98,7 @@ export const AboutUs = () => {
   return (
     <AboutContainer>
       <AboutHeader>
-        <h1>About Sarah Johnson</h1>
+        <h1>About Judith  </h1>
         <p className="subtitle">
           Strategic business consultant with 12+ years experience helping 
           entrepreneurs and small businesses achieve sustainable growth
@@ -109,7 +109,7 @@ export const AboutUs = () => {
         <ProfileImage>
           <img 
             src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-            alt="Sarah Johnson" 
+            alt="Judith  " 
           />
         </ProfileImage>
 

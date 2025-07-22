@@ -84,7 +84,7 @@ export const Testimonials = () => {
   const testimonials = [
     {
       quote: "The consulting services provided transformed our business operations and helped us achieve 30% growth in just one year.",
-      name: "Sarah Johnson",
+      name: "Judith  ",
       position: "CEO, TechSolutions Inc.",
       initials: "SJ"
     },

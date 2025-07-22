@@ -99,12 +99,12 @@ export const ContactUs = () => {
 
           <SocialItem href="https://linkedin.com/in/yourprofile" target="_blank">
             <div className="icon"><FaLinkedin /></div>
-            <span>LinkedIn: /sarah-johnson-consulting</span>
+            <span>LinkedIn: /Judith- -consulting</span>
           </SocialItem>
 
           <SocialItem href="https://instagram.com/yourprofile" target="_blank">
             <div className="icon"><FaInstagram /></div>
-            <span>Instagram: @sarahjohnson_consulting</span>
+            <span>Instagram: @Judith _consulting</span>
           </SocialItem>
 
           <SocialItem href="https://wa.me/yournumber" target="_blank">
@@ -112,9 +112,9 @@ export const ContactUs = () => {
             <span>WhatsApp: +1 (555) 123-4567</span>
           </SocialItem>
 
-          <SocialItem href="mailto:sarah@consulting.com">
+          <SocialItem href="mailto:Judith@consulting.com">
             <div className="icon"><FaEnvelope /></div>
-            <span>Email: sarah@consulting.com</span>
+            <span>Email: Judith@consulting.com</span>
           </SocialItem>
 
           <ContactInfo>
