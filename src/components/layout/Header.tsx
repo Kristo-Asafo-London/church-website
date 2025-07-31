@@ -112,24 +112,30 @@ export const Header = () => {
   return (
     <HeaderContainer>
       <Nav>
-        <Logo>ConsultPro</Logo>
-        
-        <MobileMenuButton onClick={toggleMenu}>
-          {isMenuOpen ? <FaTimes /> : <FaBars />}
-        </MobileMenuButton>
-        
+        <Logo>Kristo Asafo London</Logo>
+
+        <MobileMenuButton onClick={toggleMenu}>{isMenuOpen ? <FaTimes /> : <FaBars />}</MobileMenuButton>
+
         <NavItems isOpen={isMenuOpen}>
           <NavItem>
-            <NavLink to="/" onClick={() => setIsMenuOpen(false)}>Home</NavLink>
+            <NavLink to="/" onClick={() => setIsMenuOpen(false)}>
+              Home
+            </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>About Us</NavLink>
+            <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>
+              About Us
+            </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/hire-me" onClick={() => setIsMenuOpen(false)}>Hire Me</NavLink>
+            <NavLink to="/hire-me" onClick={() => setIsMenuOpen(false)}>
+              Donations
+            </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</NavLink>
+            <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
+              Contact
+            </NavLink>
           </NavItem>
         </NavItems>
       </Nav>

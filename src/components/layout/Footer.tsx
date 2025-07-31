@@ -61,10 +61,10 @@ export const Footer = () => {
     <FooterContainer>
       <FooterContent>
         <FooterSection>
-          <h3>ConsultPro</h3>
+          <h3>Kristo Asafo London</h3>
           <p>Providing expert consulting services to help your business grow and succeed in today's competitive market.</p>
         </FooterSection>
-        
+
         <FooterSection>
           <h3>Quick Links</h3>
           <FooterLink to="/">Home</FooterLink>
@@ -73,19 +73,17 @@ export const Footer = () => {
           <FooterLink to="/hire-me">Hire Me</FooterLink>
           <FooterLink to="/contact">Contact</FooterLink>
         </FooterSection>
-        
+
         <FooterSection>
           <h3>Contact Info</h3>
           <p>123 Business Ave</p>
           <p>London, Postcode</p>
-          <p>Email: info@consultpro.com</p>
+          <p>Email: admin@kristoasafolondon.co.uk</p>
           <p>Phone: (123) 456-7890</p>
         </FooterSection>
       </FooterContent>
-      
-      <Copyright>
-        &copy; {new Date().getFullYear()} ConsultPro. All rights reserved.
-      </Copyright>
+
+      <Copyright>&copy; {new Date().getFullYear()} Kristo Asafo London. All rights reserved.</Copyright>
     </FooterContainer>
   );
 };

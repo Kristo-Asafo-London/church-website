@@ -1,31 +1,31 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const theme = {
   colors: {
-    primary: '#2c3e50',
-    secondary: '#3498db',
-    accent: '#e74c3c',
-    light: '#ecf0f1',
-    dark: '#2c3e50',
-    text: '#333',
-    textLight: '#7f8c8d',
-    white: '#ffffff',
+    primary: "#E74C3C", // Red
+    secondary: "#F1C40F", // Yellow
+    accent: "#2ECC71", // Green
+    light: "#3498DB", // Blue
+    dark: "#2C3E50", // Dark blue for text
+    text: "#2C3E50",
+    textLight: "#7F8C8D",
+    white: "#FFFFFF",
   },
   fonts: {
     primary: '"Helvetica Neue", Arial, sans-serif',
     secondary: '"Georgia", serif',
   },
   spacing: {
-    small: '8px',
-    medium: '16px',
-    large: '24px',
-    xlarge: '32px',
+    small: "8px",
+    medium: "16px",
+    large: "24px",
+    xlarge: "32px",
   },
   breakpoints: {
-    mobile: '576px',
-    tablet: '768px',
-    desktop: '992px',
-    largeDesktop: '1200px',
+    mobile: "576px",
+    tablet: "768px",
+    desktop: "992px",
+    largeDesktop: "1200px",
   },
 };
 
@@ -49,7 +49,7 @@ export const GlobalStyle = createGlobalStyle`
     transition: color 0.3s ease;
     
     &:hover {
-      color: ${theme.colors.secondary};
+      color: ${theme.colors.light};
     }
   }
   
