@@ -55,7 +55,7 @@ export const ContactUs = () => {
           <h3>Email</h3>
           <p>Send us a message</p>
           <ContactLink href="mailto:info@kristoasafolondon.co.uk">
-            info@kristoasafolondon.org
+            info@kristoasafolondon.co.uk
           </ContactLink>
         </ContactCard>
 
