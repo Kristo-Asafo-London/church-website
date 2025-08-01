@@ -4,8 +4,50 @@ import { theme } from '../../styles/theme';
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
+export const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+
+  return (
+    <HeaderContainer>
+      <Nav>
+        <MobileMenuButton onClick={toggleMenu}>{isMenuOpen ? <FaTimes /> : <FaBars />}</MobileMenuButton>
+
+        <NavItems isOpen={isMenuOpen}>
+          <NavItem>
+            <NavLink to="/" onClick={() => setIsMenuOpen(false)}>
+              Home
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>
+              About Us
+            </NavLink>
+          </NavItem>
+
+          <NavItem>
+            <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
+              Contact
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/music" onClick={() => setIsMenuOpen(false)}>
+              Music
+            </NavLink>
+          </NavItem>
+        </NavItems>
+      </Nav>
+    </HeaderContainer>
+  );
+};
+
 const HeaderContainer = styled.header`
-  background-color: ${theme.colors.primary};
+  background-color: ${theme.colors.dark};
   color: ${theme.colors.white};
   padding: ${theme.spacing.large} 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -16,19 +58,17 @@ const HeaderContainer = styled.header`
 
 const Nav = styled.nav`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 ${theme.spacing.large};
+
+      @media (max-width: ${theme.breakpoints.tablet}) {
+     justify-content: left;
+    }
 `;
 
-const Logo = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: ${theme.colors.white};
-  z-index: 101;
-`;
 
 const NavItems = styled.ul<{ isOpen: boolean }>`
   display: flex;
@@ -41,7 +81,7 @@ const NavItems = styled.ul<{ isOpen: boolean }>`
     left: 0;
     width: 100%;
     height: 60vh;
-    background-color: ${theme.colors.primary};
+    background-color: ${theme.colors.dark};
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -66,7 +106,7 @@ const NavItem = styled.li`
       left: 0;
       width: 0;
       height: 2px;
-      background-color: ${theme.colors.accent};
+      background-color: ${theme.colors.white};
       transition: width 0.3s ease;
     }
     
@@ -75,7 +115,7 @@ const NavItem = styled.li`
     }
     
     &.active {
-      color: ${theme.colors.accent};
+      color: ${theme.colors.white};
       
       &:after {
         width: 100%;
@@ -101,44 +141,3 @@ const MobileMenuButton = styled.button`
     display: block;
   }
 `;
-
-export const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  return (
-    <HeaderContainer>
-      <Nav>
-        <Logo>Kristo Asafo London</Logo>
-
-        <MobileMenuButton onClick={toggleMenu}>{isMenuOpen ? <FaTimes /> : <FaBars />}</MobileMenuButton>
-
-        <NavItems isOpen={isMenuOpen}>
-          <NavItem>
-            <NavLink to="/" onClick={() => setIsMenuOpen(false)}>
-              Home
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>
-              About Us
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/hire-me" onClick={() => setIsMenuOpen(false)}>
-              Donations
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
-              Contact
-            </NavLink>
-          </NavItem>
-        </NavItems>
-      </Nav>
-    </HeaderContainer>
-  );
-};

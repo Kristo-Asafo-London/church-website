@@ -3,6 +3,55 @@ import styled from 'styled-components';
 import { FaQuoteLeft } from 'react-icons/fa';
 import { theme } from '../styles/theme';
 
+
+export const Testimonials = () => {
+  const testimonials = [
+    {
+      quote: "The consulting services provided transformed our business operations and helped us achieve 30% growth in just one year.",
+      name: "Judith  ",
+      position: "CEO, TechSolutions Inc.",
+      initials: "SJ"
+    },
+    {
+      quote: "Their strategic insights were invaluable during our expansion phase. Highly recommend their expertise to any growing business.",
+      name: "Michael Chen",
+      position: "COO, Global Ventures",
+      initials: "MC"
+    },
+    {
+      quote: "Working with this team was a game-changer for our financial planning. They identified savings we never would have found on our own.",
+      name: "David Wilson",
+      position: "CFO, Enterprise Corp",
+      initials: "DW"
+    }
+  ];
+
+  return (
+    <TestimonialsContainer>
+      <SectionHeader>
+        <h2>What Our Clients Say</h2>
+      </SectionHeader>
+      
+      <TestimonialsGrid>
+        {testimonials.map((testimonial, index) => (
+          <TestimonialCard key={index}>
+            <div className="quote">
+              <FaQuoteLeft />
+              <p>{testimonial.quote}</p>
+            </div>
+            <div className="author">
+              <div className="avatar">{testimonial.initials}</div>
+              <div className="info">
+                <div className="name">{testimonial.name}</div>
+                <div className="position">{testimonial.position}</div>
+              </div>
+            </div>
+          </TestimonialCard>
+        ))}
+      </TestimonialsGrid>
+    </TestimonialsContainer>
+  );
+};
 const TestimonialsContainer = styled.section`
   background-color: ${theme.colors.light};
   padding: 4rem ${theme.spacing.large};
@@ -79,52 +128,3 @@ const TestimonialCard = styled.div`
     }
   }
 `;
-
-export const Testimonials = () => {
-  const testimonials = [
-    {
-      quote: "The consulting services provided transformed our business operations and helped us achieve 30% growth in just one year.",
-      name: "Judith  ",
-      position: "CEO, TechSolutions Inc.",
-      initials: "SJ"
-    },
-    {
-      quote: "Their strategic insights were invaluable during our expansion phase. Highly recommend their expertise to any growing business.",
-      name: "Michael Chen",
-      position: "COO, Global Ventures",
-      initials: "MC"
-    },
-    {
-      quote: "Working with this team was a game-changer for our financial planning. They identified savings we never would have found on our own.",
-      name: "David Wilson",
-      position: "CFO, Enterprise Corp",
-      initials: "DW"
-    }
-  ];
-
-  return (
-    <TestimonialsContainer>
-      <SectionHeader>
-        <h2>What Our Clients Say</h2>
-      </SectionHeader>
-      
-      <TestimonialsGrid>
-        {testimonials.map((testimonial, index) => (
-          <TestimonialCard key={index}>
-            <div className="quote">
-              <FaQuoteLeft />
-              <p>{testimonial.quote}</p>
-            </div>
-            <div className="author">
-              <div className="avatar">{testimonial.initials}</div>
-              <div className="info">
-                <div className="name">{testimonial.name}</div>
-                <div className="position">{testimonial.position}</div>
-              </div>
-            </div>
-          </TestimonialCard>
-        ))}
-      </TestimonialsGrid>
-    </TestimonialsContainer>
-  );
-};

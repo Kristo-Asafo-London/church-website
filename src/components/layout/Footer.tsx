@@ -2,6 +2,39 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { theme } from '../../styles/theme';
 
+
+export const Footer = () => {
+  return (
+    <FooterContainer>
+      <FooterContent>
+        <FooterSection>
+          <h3>Kristo Asafo London</h3>
+          <p>Service To Mankind Is Service To God</p>
+        </FooterSection>
+
+        <FooterSection>
+          <h3>Quick Links</h3>
+          <FooterLink to="/">Home</FooterLink>
+          <FooterLink to="/about">About Us</FooterLink>
+          <FooterLink to="/contact">Contact</FooterLink>
+          <FooterLink to="/music">Music</FooterLink>
+        </FooterSection>
+
+        <FooterSection>
+          <h3>Contact Info</h3>
+          <p>35 Bensham Grove, </p>
+          <p>Thornton Heath, CR7 8DD</p>
+          <p>Email: admin@kristoasafolondon.co.uk</p>
+          <p>Phone: 07961902404</p>
+        </FooterSection>
+      </FooterContent>
+
+      <Copyright>&copy; {new Date().getFullYear()} Kristo Asafo London. All rights reserved.</Copyright>
+    </FooterContainer>
+  );
+};
+
+
 const FooterContainer = styled.footer`
   background-color: ${theme.colors.dark};
   color: ${theme.colors.white};
@@ -39,11 +72,11 @@ const FooterLink = styled(NavLink)`
   transition: color 0.3s ease;
 
   &:hover {
-    color: ${theme.colors.accent};
+    color: ${theme.colors.white};
   }
 
   &.active {
-    color: ${theme.colors.accent};
+    color: ${theme.colors.white};
     font-weight: 500;
   }
 `;
@@ -55,35 +88,3 @@ const Copyright = styled.div`
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   color: ${theme.colors.textLight};
 `;
-
-export const Footer = () => {
-  return (
-    <FooterContainer>
-      <FooterContent>
-        <FooterSection>
-          <h3>Kristo Asafo London</h3>
-          <p>Providing expert consulting services to help your business grow and succeed in today's competitive market.</p>
-        </FooterSection>
-
-        <FooterSection>
-          <h3>Quick Links</h3>
-          <FooterLink to="/">Home</FooterLink>
-          <FooterLink to="/about">About Us</FooterLink>
-          <FooterLink to="/testimonials">Testimonials</FooterLink>
-          <FooterLink to="/hire-me">Hire Me</FooterLink>
-          <FooterLink to="/contact">Contact</FooterLink>
-        </FooterSection>
-
-        <FooterSection>
-          <h3>Contact Info</h3>
-          <p>123 Business Ave</p>
-          <p>London, Postcode</p>
-          <p>Email: admin@kristoasafolondon.co.uk</p>
-          <p>Phone: (123) 456-7890</p>
-        </FooterSection>
-      </FooterContent>
-
-      <Copyright>&copy; {new Date().getFullYear()} Kristo Asafo London. All rights reserved.</Copyright>
-    </FooterContainer>
-  );
-};

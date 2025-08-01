@@ -1,109 +1,119 @@
 import styled, { keyframes } from "styled-components";
 import { theme } from "../../styles/theme";
-import { Button } from "../common/Button";
 import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
   const navigate = useNavigate();
 
-  const handleCoreValuesClicked = () => {
-    navigate("/hire-me");
-  };
-
-  const handleLearnMoreClick = () => {
-    navigate("/about");
-  };
-
   return (
     <HeroContainer>
-      <GradientBackground>
-        <StarContainer>
-          <MainStar>★</MainStar>
-          {[...Array(12)].map((_, i) => (
-            <OrbitingStar key={i} index={i}>
-              ★
-            </OrbitingStar>
-          ))}
-        </StarContainer>
-      </GradientBackground>
-      <HeroContent>
-        <h1>Service To Mankind Is Service To God</h1>
-        <p>
-          Kristo Asafo Mission of Ghana, London Branch, is a non-profit organization dedicated to serving the community through various charitable
-          initiatives and support programs. We aim to uplift lives and promote the values of compassion, integrity, and service.
-        </p>
-        <ButtonGroup>
-          <Button primary onClick={handleCoreValuesClicked}>
-            Our Core Values
-          </Button>
-          <Button secondary onClick={handleLearnMoreClick}>
-            About Us
-          </Button>
-        </ButtonGroup>
-      </HeroContent>
+      <HeroGrid>
+        <LeftVisual>
+          <GradientBackground>
+            <StarSystem>
+              <MainStar>★</MainStar>
+              {[...Array(12)].map((_, i) => (
+                <OrbitingStar key={i} index={i}>
+                  ★
+                </OrbitingStar>
+              ))}
+            </StarSystem>
+          </GradientBackground>
+        </LeftVisual>
+
+        <RightContent>
+          <HeroTitle>Service To Mankind Is Service To God</HeroTitle>
+          <p>
+            Kristo Asafo Mission of Ghana, London Branch, registered under the charity commission with number 1151246, is committed to serving humanity through compassion, technology, and community empowerment.
+          </p>
+          <ButtonGroup>
+            <ActionButton onClick={() => navigate("/about")}>About Us</ActionButton>
+            <ActionButton secondary onClick={() => navigate("/contact")}>Contact Us</ActionButton>
+          </ButtonGroup>
+        </RightContent>
+      </HeroGrid>
     </HeroContainer>
   );
 };
 
+// Keyframes
 const orbit = keyframes`
   0% {
-    transform: rotate(0deg) translateX(120px) rotate(0deg);
+    transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg) translateX(120px) rotate(-360deg);
+    transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
   }
 `;
 
+// Layout container
 const HeroContainer = styled.section`
-  color: ${theme.colors.white};
-  padding: 6rem 2rem;
-  text-align: center;
   position: relative;
-  overflow: hidden;
+  min-height: 100vh;
+  padding: 2rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
+  background-color:rgba(25, 25, 25, 0.16);
+`;
 
-  & > * {
-    position: relative;
-    z-index: 1;
-  }
+const HeroGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1400px;
+  width: 100%;
+  gap: 4rem;
+  align-items: center;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
-    padding: 4rem 1rem;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+`;
+
+const HeroTitle = styled.h1`
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  color: ${theme.colors.white};
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+`;
+
+const LeftVisual = styled.div`
+  position: relative;
+  width: 100%;
+  height: 500px;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    height: 400px;
   }
 `;
 
 const GradientBackground = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, #0a45bdff 23%, #006400 26%, #e3e70dff 28%, #d30c0cff 30%, #acaaaaff 30%);
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgb(9, 125, 202) 23%,
+    #006400 26%,
+    #e3e70d 28%,
+    #d30c0c 30%,
+    rgb(255, 255, 255) 30%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 0;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.1);
-  }
+  border-radius: 16px;
 `;
 
-const StarContainer = styled.div`
+const StarSystem = styled.div`
   position: relative;
-  width: 300px;
-  height: 300px;
-  margin-bottom: 3rem;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  max-width: 400px;
+  max-height: 400px;
 `;
 
 const MainStar = styled.div`
@@ -111,7 +121,7 @@ const MainStar = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 5rem;
+  font-size: clamp(3rem, 8vw, 5rem);
   color: white;
   text-shadow: 0 0 10px #fff, 0 0 20px #fff;
   z-index: 2;
@@ -119,47 +129,75 @@ const MainStar = styled.div`
 
 const OrbitingStar = styled.div<{ index: number }>`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 1.5rem;
+  top: 48%;
+  left: 48%;
+  font-size: 12px;
   color: white;
   text-shadow: 0 0 5px #fff;
   animation: ${orbit} 20s linear infinite;
   animation-delay: ${({ index }) => `-${index * 1.666}s`};
   transform-origin: left center;
+
+  --orbit-radius: min(25vw, 80px);
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    --orbit-radius: min(25vw, 50px);
+    top: 47%;
+  }
 `;
 
-const HeroContent = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  z-index: 2;
+const RightContent = styled.div`
+  color: white;
+  text-align: left;
 
   h1 {
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: ${theme.spacing.medium};
-    line-height: 1.2;
-
-    @media (max-width: ${theme.breakpoints.mobile}) {
-      font-size: 2.2rem;
-    }
   }
 
   p {
     font-size: 1.2rem;
-    margin-bottom: ${theme.spacing.xlarge};
-    opacity: 0.9;
-    color: ${theme.colors.white};
+    max-width: 500px;
+    margin-bottom: ${theme.spacing.large};
+    color: ${theme.colors.black}
+  }
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    text-align: center;
+
+    p {
+      margin: 0 auto ${theme.spacing.large};
+    }
   }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
-  justify-content: center;
-  gap: ${theme.spacing.large};
-  z-index: 2;
+  gap: 1.5rem;
 
   @media (max-width: ${theme.breakpoints.mobile}) {
     flex-direction: column;
     align-items: center;
+  }
+`;
+
+const ActionButton = styled.button<{ secondary?: boolean }>`
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: ${({ secondary }) =>
+    secondary ? theme.colors.white : theme.colors.light};
+  color: ${({ secondary }) =>
+    secondary ? theme.colors.light : theme.colors.white};
+  transition: background 0.3s ease;
+
+  &:hover {
+    background-color: ${({ secondary }) =>
+      secondary ? theme.colors.dark : theme.colors.dark};
+    color: ${({ secondary }) =>
+      secondary ? theme.colors.light : theme.colors.white};
   }
 `;
