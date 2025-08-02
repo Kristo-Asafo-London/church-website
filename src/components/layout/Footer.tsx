@@ -24,7 +24,7 @@ export const Footer = () => {
           <h3>Contact Info</h3>
           <p>35 Bensham Grove, </p>
           <p>Thornton Heath, CR7 8DD</p>
-          <p>Email: admin@kristoasafolondon.co.uk</p>
+          <p>Email: info@kristoasafolondon.co.uk</p>
           <p>Phone: 07961902404</p>
         </FooterSection>
       </FooterContent>

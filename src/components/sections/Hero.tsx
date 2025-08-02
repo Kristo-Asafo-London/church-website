@@ -6,7 +6,7 @@ export const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <HeroContainer>
+    <ImageContainer>
       <HeroGrid>
         <LeftVisual>
           <GradientBackground>
@@ -24,15 +24,18 @@ export const Hero = () => {
         <RightContent>
           <HeroTitle>Service To Mankind Is Service To God</HeroTitle>
           <p>
-            Kristo Asafo Mission of Ghana, London Branch, registered under the charity commission with number 1151246, is committed to serving humanity through compassion, technology, and community empowerment.
+            Kristo Asafo Mission of Ghana, London Branch, registered under the charity commission with number 1151246, is committed to serving
+            humanity through compassion, technology, and community empowerment.
           </p>
           <ButtonGroup>
             <ActionButton onClick={() => navigate("/about")}>About Us</ActionButton>
-            <ActionButton secondary onClick={() => navigate("/contact")}>Contact Us</ActionButton>
+            <ActionButton secondary onClick={() => navigate("/contact")}>
+              Contact Us
+            </ActionButton>
           </ButtonGroup>
         </RightContent>
       </HeroGrid>
-    </HeroContainer>
+    </ImageContainer>
   );
 };
 
@@ -46,15 +49,30 @@ const orbit = keyframes`
   }
 `;
 
-// Layout container
-const HeroContainer = styled.section`
+const ImageContainer = styled.div`
   position: relative;
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
   padding: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:rgba(25, 25, 25, 0.16);
+  background-image: url("/images/stars.jpeg");
+  background-size: cover;
+  background-position: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* darkness level: 0 = transparent, 1 = black */
+    z-index: 0;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1; /* put children above overlay */
+  }
 `;
 
 const HeroGrid = styled.div`
@@ -77,7 +95,7 @@ const HeroTitle = styled.h1`
   line-height: 1.2;
   margin: 0;
   color: ${theme.colors.white};
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 `;
 
 const LeftVisual = styled.div`
@@ -93,14 +111,7 @@ const LeftVisual = styled.div`
 const GradientBackground = styled.div`
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at center,
-    rgb(9, 125, 202) 23%,
-    #006400 26%,
-    #e3e70d 28%,
-    #d30c0c 30%,
-    rgb(255, 255, 255) 30%
-  );
+  background: radial-gradient(circle at center, rgb(9, 125, 202) 23%, #006400 26%, #e3e70d 28%, #d30c0c 30%, rgb(255, 255, 255) 30%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,6 +160,9 @@ const OrbitingStar = styled.div<{ index: number }>`
 const RightContent = styled.div`
   color: white;
   text-align: left;
+  background: rgba(0, 0, 0, 0.34);
+  padding: 2rem;
+  border-radius: 16px;
 
   h1 {
     font-size: clamp(2rem, 5vw, 3rem);
@@ -159,7 +173,7 @@ const RightContent = styled.div`
     font-size: 1.2rem;
     max-width: 500px;
     margin-bottom: ${theme.spacing.large};
-    color: ${theme.colors.black}
+    color: ${theme.colors.white};
   }
 
   @media (max-width: ${theme.breakpoints.tablet}) {

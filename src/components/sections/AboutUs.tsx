@@ -81,6 +81,7 @@ const AboutContainer = styled.div`
   background-color: ${lighten(0.45, theme.colors.light)};
   padding: 4rem ${theme.spacing.large};
   border-radius: 8px;
+  background-image: url("/images/white.jpg");
 `;
 
 const AboutHeader = styled(motion.div)`

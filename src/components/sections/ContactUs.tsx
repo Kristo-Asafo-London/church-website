@@ -38,7 +38,7 @@ export const ContactUs = () => {
           </IconCircle>
           <h3>Email</h3>
           <p>Send us a message</p>
-          <ContactLink href="mailto:admin@kristoasafolondon.co.uk">admin@kristoasafolondon.co.uk</ContactLink>
+          <ContactLink href="mailto:info@kristoasafolondon.co.uk">info@kristoasafolondon.co.uk</ContactLink>
         </ContactCard>
 
         <ContactCard>
@@ -96,9 +96,10 @@ export const ContactUs = () => {
 
 // Styled Components
 const ContactContainer = styled.div`
-  max-width: 1200px;
+  // max-width: 1200px;
   margin: 0 auto;
   padding: 4rem ${theme.spacing.large};
+  background-image: url("/images/white.jpg");
 `;
 
 const ContactHeader = styled.div`
@@ -114,7 +115,7 @@ const ContactHeader = styled.div`
 
   .subtitle {
     font-size: 1.25rem;
-    color: ${theme.colors.textLight};
+    color: ${theme.colors.text};
     max-width: 700px;
     margin: 0 auto;
     line-height: 1.6;
@@ -136,13 +137,12 @@ const ContactGrid = styled.div`
   }
 `;
 
-
 const ContactCard = styled.div`
   background: ${theme.colors.white};
   border-radius: 12px;
   padding: 2.5rem;
   text-align: center;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
