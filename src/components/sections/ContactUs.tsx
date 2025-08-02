@@ -8,13 +8,39 @@ export const ContactUs = () => {
     <ContactContainer>
       <ContactHeader>
         <h1>Connect With Us</h1>
-        <p className="subtitle">
-          We'd love to hear from you. Reach out through any of these channels and 
-          we'll respond as quickly as possible.
-        </p>
+        <p className="subtitle">We'd love to hear from you. Reach out through any of these channels and we'll respond as quickly as possible.</p>
       </ContactHeader>
 
       <ContactGrid>
+        <ContactCard>
+          <IconCircle color={theme.colors.whatsapp}>
+            <FaWhatsapp size={24} />
+          </IconCircle>
+          <h3>WhatsApp</h3>
+          <p>Chat with our team</p>
+          <ContactLink href="https://wa.me/+447961902404" target="_blank">
+            07961902404
+          </ContactLink>
+        </ContactCard>
+
+        <ContactCard>
+          <IconCircle color={theme.colors.accent}>
+            <FaPhone size={24} />
+          </IconCircle>
+          <h3>Phone</h3>
+          <p>Call our office</p>
+          <ContactLink href="tel:+447961902404">07961902404</ContactLink>
+        </ContactCard>
+
+        <ContactCard>
+          <IconCircle color={theme.colors.primary}>
+            <FaEnvelope size={24} />
+          </IconCircle>
+          <h3>Email</h3>
+          <p>Send us a message</p>
+          <ContactLink href="mailto:admin@kristoasafolondon.co.uk">admin@kristoasafolondon.co.uk</ContactLink>
+        </ContactCard>
+
         <ContactCard>
           <IconCircle color={theme.colors.linkedin}>
             <FaLinkedin size={24} />
@@ -38,57 +64,24 @@ export const ContactUs = () => {
         </ContactCard>
 
         <ContactCard>
-          <IconCircle color={theme.colors.whatsapp}>
-            <FaWhatsapp size={24} />
-          </IconCircle>
-          <h3>WhatsApp</h3>
-          <p>Chat with our team</p>
-          <ContactLink href="https://wa.me/+447961902404" target="_blank">
-          07961902404
-          </ContactLink>
-        </ContactCard>
-
-        <ContactCard>
-          <IconCircle color={theme.colors.primary}>
-            <FaEnvelope size={24} />
-          </IconCircle>
-          <h3>Email</h3>
-          <p>Send us a message</p>
-          <ContactLink href="mailto:info@kristoasafolondon.co.uk">
-            info@kristoasafolondon.co.uk
-          </ContactLink>
-        </ContactCard>
-
-        <ContactCard>
-          <IconCircle color={theme.colors.accent}>
-            <FaPhone size={24} />
-          </IconCircle>
-          <h3>Phone</h3>
-          <p>Call our office</p>
-          <ContactLink href="tel:+447961902404">
-          07961902404
-          </ContactLink>
-        </ContactCard>
-
-        <ContactCard>
           <IconCircle color={theme.colors.secondary}>
             <FaMapMarkerAlt size={24} />
           </IconCircle>
           <h3>Headquarters</h3>
           <p>Kantanka Group, Gomoa Mpota</p>
-          <Address>
-            Central Region, Ghana
-          </Address>
+          <Address>Central Region, Ghana</Address>
         </ContactCard>
       </ContactGrid>
 
       <HoursSection>
-        <h2><FaClock style={{ marginRight: '10px' }} /> Office Hours</h2>
+        <h2>
+          <FaClock style={{ marginRight: "10px" }} /> Office Hours
+        </h2>
         <HoursGrid>
           <div>
             <h4>Weekdays</h4>
             <p>Monday - Friday</p>
-            <p>8:00  - 17:00 UTC</p>
+            <p>8:00 - 17:00 UTC</p>
           </div>
           <div>
             <h4>Weekends</h4>
