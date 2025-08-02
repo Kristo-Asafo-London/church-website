@@ -29,7 +29,14 @@ export const Footer = () => {
         </FooterSection>
       </FooterContent>
 
-      <Copyright>&copy; {new Date().getFullYear()} Kristo Asafo London. All rights reserved.</Copyright>
+      <Copyright>
+        &copy; {new Date().getFullYear()} Kristo Asafo London. All rights reserved. <br />
+        <br />
+        Website by{" "}
+        <a href="https://flexsaas.co.uk" target="_blank" rel="noopener noreferrer">
+          FlexSaaS <img src="/flexsaas.png" alt="FlexSaaS Logo" style={{ width: "15px", marginLeft: "5px", verticalAlign: "middle" }} />
+        </a>
+      </Copyright>
     </FooterContainer>
   );
 };
