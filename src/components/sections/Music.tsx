@@ -44,6 +44,8 @@ const LoadingOverlay = styled.div<{ loaded: boolean }>`
 const LoadingText = styled.p`
   margin-top: 20px;
   font-size: 1.2rem;
+  padding: 0 20px;
+  text-align: center;
   color: ${theme.colors.text};
 `;
 
