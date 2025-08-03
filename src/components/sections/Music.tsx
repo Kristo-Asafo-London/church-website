@@ -109,7 +109,7 @@ export const Music = () => {
       {!loaded && (
         <LoadingOverlay loaded={loaded}>
           <PacmanLoader color={theme.colors.light} size={50} />
-          <LoadingText>Loading songs from Kotoko Band Website... {loadingProgress}%</LoadingText>
+          <LoadingText>Loading songs from Kotoko Ancient Band ... {loadingProgress}%</LoadingText>
         </LoadingOverlay>
       )}
       <iframe
