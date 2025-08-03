@@ -2,65 +2,65 @@ import styled from 'styled-components';
 import { FaChurch, FaLightbulb, FaCogs, FaHandsHelping } from 'react-icons/fa';
 import { theme } from '../../styles/theme';
 import { lighten } from 'polished';
-import { Achievements } from './Achievements';
-import  { motion } from 'framer-motion';
-
+import { Achievements } from "./Achievements";
+import { shadowColors } from "../common/common";
 
 export const AboutUs = () => {
   return (
     <AboutContainer>
-      <AboutHeader as={motion.div} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+      <AboutHeader>
         <h1>Kristo Asafo, London</h1>
         <p className="subtitle">
-          Kristo Asafo Mission, London Branch is progressive organization founded by Apostle Dr. Eng. Kwadwo Safo Kantanka, and registered under the charity commission with number 1151246. 
-          We are dedicated to spiritual growth, technological innovation, and community development.
+          Kristo Asafo Mission, London Branch is progressive organization founded by Apostle Dr. Eng. Kwadwo Safo Kantanka, and registered under the
+          charity commission England and Wales with number 1151246. We are dedicated to spiritual growth, technological innovation, and community
+          development.
         </p>
       </AboutHeader>
 
       <AboutContent>
-        <ProfileImage as={motion.div} initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <img 
-            src="/images/kantanka22.png" 
-            alt="Apostle Dr. Eng. Kwadwo Safo Kantanka" 
-          />
+        <ProfileImage>
+          <img src="/images/kantanka22.png" alt="Apostle Dr. Eng. Kwadwo Safo Kantanka" />
           <ImageCaption>Founder: Apostle Dr. Eng. Kwadwo Safo Kantanka</ImageCaption>
         </ProfileImage>
 
-        <BioContent as={motion.div} initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+        <BioContent>
           <h2>Our Mission & Vision</h2>
           <p>
-            Kristo Asafo (Christ Reformed Church) was established to promote Christianity through 
-            practical demonstration of God's power in science and technology. Under the visionary 
-            leadership of Apostle Dr. Ing. Kwadwo Safo Kantanka, we combine spiritual principles with technological 
-            advancement to transform lives and communities.
+            Kristo Asafo (Christ Reformed Church) was established to promote Christianity through practical demonstration of God's power in science
+            and technology. Under the visionary leadership of Apostle Dr. Ing. Kwadwo Safo Kantanka, we combine spiritual principles with
+            technological advancement to transform lives and communities.
           </p>
           <p>
-            Our unique approach bridges the gap between faith and innovation, demonstrating that 
-            spirituality and scientific progress can coexist harmoniously for the betterment of 
-            humanity.
+            Our unique approach bridges the gap between faith and innovation, demonstrating that spirituality and scientific progress can coexist
+            harmoniously for the betterment of humanity.
           </p>
 
           <ExpertiseSection>
             <h3>Our Core Principles</h3>
 
-            {[{
-              icon: <FaChurch />,
-              title: 'Spiritual Foundation',
-              desc: 'Rooted in Christian principles, we emphasize moral uprightness, discipline, and the practical application of faith in daily life.'
-            }, {
-              icon: <FaLightbulb />,
-              title: 'Technological Innovation',
-              desc: 'Pioneering African technological solutions through Kantanka Automobiles and other inventions that demonstrate indigenous engineering excellence.'
-            }, {
-              icon: <FaCogs />,
-              title: 'Self-Reliance',
-              desc: 'Promoting economic independence through vocational training, agricultural development, and local manufacturing initiatives.'
-            }, {
-              icon: <FaHandsHelping />,
-              title: 'Community Development',
-              desc: 'Implementing programs that address education, healthcare, and infrastructure needs in underserved communities across Ghana.'
-            }].map(({ icon, title, desc }, idx) => (
-              <ExpertiseItem as={motion.div} key={title} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.2 }}>
+            {[
+              {
+                icon: <FaChurch />,
+                title: "Spiritual Foundation",
+                desc: "Rooted in Christian principles, we emphasize moral uprightness, discipline, and the practical application of faith in daily life.",
+              },
+              {
+                icon: <FaLightbulb />,
+                title: "Technological Innovation",
+                desc: "Pioneering African technological solutions through Kantanka Automobiles and other inventions that demonstrate indigenous engineering excellence.",
+              },
+              {
+                icon: <FaCogs />,
+                title: "Self-Reliance",
+                desc: "Promoting economic independence through vocational training, agricultural development, and local manufacturing initiatives.",
+              },
+              {
+                icon: <FaHandsHelping />,
+                title: "Community Development",
+                desc: "Implementing programs that address education, healthcare, and infrastructure needs in underserved communities across Ghana.",
+              },
+            ].map(({ icon, title, desc }) => (
+              <ExpertiseItem key={title}>
                 <IconContainer>{icon}</IconContainer>
                 <div className="content">
                   <h4>{title}</h4>
@@ -78,13 +78,24 @@ export const AboutUs = () => {
 
 const AboutContainer = styled.div`
   margin: 0 auto;
-  background-color: ${lighten(0.45, theme.colors.light)};
-  padding: 4rem ${theme.spacing.large};
-  border-radius: 8px;
-  background-image: url("/images/white.jpg");
+  padding: 6rem ${theme.spacing.large};
+  background: linear-gradient(135deg, ${lighten(0.45, theme.colors.light)} 0%, ${theme.colors.white} 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, ${shadowColors.join(", ")});
+    z-index: 1;
+  }
 `;
 
-const AboutHeader = styled(motion.div)`
+const AboutHeader = styled.div`
   text-align: center;
   margin-bottom: 4rem;
 
@@ -97,7 +108,7 @@ const AboutHeader = styled(motion.div)`
     display: inline-block;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -10px;
       left: 50%;
@@ -130,7 +141,7 @@ const AboutContent = styled.div`
   }
 `;
 
-const ProfileImage = styled(motion.div)`
+const ProfileImage = styled.div`
   position: relative;
   img {
     width: 100%;
@@ -150,7 +161,7 @@ const ImageCaption = styled.p`
   color: ${theme.colors.textLight};
 `;
 
-const BioContent = styled(motion.div)`
+const BioContent = styled.div`
   h2 {
     font-size: 2rem;
     color: ${theme.colors.text};
@@ -176,7 +187,7 @@ const ExpertiseSection = styled.div`
     padding-bottom: ${theme.spacing.small};
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 0;
@@ -201,7 +212,7 @@ const IconContainer = styled.div`
   flex-shrink: 0;
 `;
 
-const ExpertiseItem = styled(motion.div)`
+const ExpertiseItem = styled.div`
   display: flex;
   align-items: flex-start;
   gap: ${theme.spacing.large};

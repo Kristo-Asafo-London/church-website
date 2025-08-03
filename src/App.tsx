@@ -7,6 +7,7 @@ import { AboutUs } from './components/sections/AboutUs';
 import { ContactUs } from './components/sections/ContactUs';
 import { Music } from './components/sections/Music';
 import ScrollToTopButton from './components/common/ScrollToTop';
+import DonationSection from "./components/sections/Donations";
 
 export const App = () => {
   return (
@@ -16,9 +17,10 @@ export const App = () => {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutUs/>} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/donations" element={<DonationSection />} />
             <Route path="/contact" element={<ContactUs />} />
-            <Route path="/music" element={<Music />} /> 
+            <Route path="/music" element={<Music />} />
           </Routes>
         </Layout>
       </Router>

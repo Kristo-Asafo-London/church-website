@@ -24,6 +24,13 @@ export const Header = () => {
               Home
             </NavLink>
           </NavItem>
+
+          <NavItem>
+            <NavLink to="/donations" onClick={() => setIsMenuOpen(false)}>
+              Donations
+            </NavLink>
+          </NavItem>
+
           <NavItem>
             <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>
               About Us

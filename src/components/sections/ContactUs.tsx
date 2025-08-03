@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { FaLinkedin, FaInstagram, FaWhatsapp, FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { theme } from '../../styles/theme';
 import { lighten } from 'polished';
+import { shadowColors } from "../common/common";
 
 export const ContactUs = () => {
   return (
@@ -68,8 +69,8 @@ export const ContactUs = () => {
             <FaMapMarkerAlt size={24} />
           </IconCircle>
           <h3>Headquarters</h3>
-          <p>Kantanka Group, Gomoa Mpota</p>
-          <Address>Central Region, Ghana</Address>
+          <p> Accra NewTown</p>
+          <Address>Greater Accra Region, Ghana</Address>
         </ContactCard>
       </ContactGrid>
 
@@ -96,10 +97,22 @@ export const ContactUs = () => {
 
 // Styled Components
 const ContactContainer = styled.div`
-  // max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem ${theme.spacing.large};
-  background-image: url("/images/white.jpg");
+  padding: 6rem ${theme.spacing.large};
+  background: linear-gradient(135deg, ${lighten(0.45, theme.colors.light)} 0%, ${theme.colors.white} 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, ${shadowColors.join(", ")});
+    z-index: 1;
+  }
 `;
 
 const ContactHeader = styled.div`

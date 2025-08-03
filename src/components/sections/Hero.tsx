@@ -24,8 +24,8 @@ export const Hero = () => {
         <RightContent>
           <HeroTitle>Service To Mankind Is Service To God</HeroTitle>
           <p>
-            Kristo Asafo Mission of Ghana, London Branch, registered under the charity commission with number 1151246, is committed to serving
-            humanity through compassion, technology, and community empowerment.
+            Kristo Asafo Mission of Ghana, London Branch, registered under the charity commission of England and Wales with number 1151246, is
+            committed to serving humanity through compassion, technology, and community empowerment.
           </p>
           <ButtonGroup>
             <ActionButton onClick={() => navigate("/about")}>About Us</ActionButton>
@@ -52,7 +52,7 @@ const orbit = keyframes`
 const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 70vh;
   padding: 2rem;
   display: flex;
   align-items: center;
@@ -65,13 +65,17 @@ const ImageContainer = styled.div`
     content: "";
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.7); /* darkness level: 0 = transparent, 1 = black */
+    background-color: rgba(0, 0, 0, 0.4); /* darkness level: 0 = transparent, 1 = black */
     z-index: 0;
   }
 
   > * {
     position: relative;
     z-index: 1; /* put children above overlay */
+  }
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    height: 100%;
   }
 `;
 

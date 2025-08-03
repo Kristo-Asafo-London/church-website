@@ -92,3 +92,4 @@ export const GlobalStyle = createGlobalStyle`
   .youtube { color: ${theme.colors.youtube}; }
   .email { color: ${theme.colors.email}; }
 `;
+

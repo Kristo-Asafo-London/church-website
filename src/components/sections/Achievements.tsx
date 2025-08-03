@@ -110,16 +110,16 @@ const AchievementCard = styled.div`
   position: relative;
   overflow: hidden;
   border-top: 3px solid ${theme.colors.accent};
-  
+
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    
+
     &::before {
       width: 100%;
     }
   }
-  
+
   &::before {
     content: "";
     position: absolute;
@@ -130,14 +130,14 @@ const AchievementCard = styled.div`
     background: ${theme.colors.primary};
     transition: width 0.4s ease;
   }
-  
+
   h4 {
     color: ${theme.colors.text};
     margin: 1.5rem 0 1rem;
     font-size: 1.5rem;
     font-weight: 600;
   }
-  
+
   p {
     color: ${theme.colors.textLight};
     line-height: 1.6;
