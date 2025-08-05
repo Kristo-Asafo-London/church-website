@@ -15,8 +15,9 @@ export const Footer = () => {
         <FooterSection>
           <h3>Quick Links</h3>
           <FooterLink to="/">Home</FooterLink>
-          <FooterLink to="/about">About Us</FooterLink>
           <FooterLink to="/donations">Donations</FooterLink>
+          <FooterLink to="/about">About Us</FooterLink>
+          <FooterLink to="/trustees">Our Trustees</FooterLink>
           <FooterLink to="/contact">Contact</FooterLink>
           <FooterLink to="/music">Music</FooterLink>
         </FooterSection>

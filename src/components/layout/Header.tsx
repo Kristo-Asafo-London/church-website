@@ -38,6 +38,12 @@ export const Header = () => {
           </NavItem>
 
           <NavItem>
+            <NavLink to="/trustees" onClick={() => setIsMenuOpen(false)}>
+              Our Trustees
+            </NavLink>
+          </NavItem>
+
+          <NavItem>
             <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
               Contact
             </NavLink>

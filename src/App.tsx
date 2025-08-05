@@ -8,6 +8,7 @@ import { ContactUs } from './components/sections/ContactUs';
 import { Music } from './components/sections/Music';
 import ScrollToTopButton from './components/common/ScrollToTop';
 import DonationSection from "./components/sections/Donations";
+import Trustees, { trusteesData } from "./components/sections/Trustee";
 
 export const App = () => {
   return (
@@ -21,6 +22,8 @@ export const App = () => {
             <Route path="/donations" element={<DonationSection />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/music" element={<Music />} />
+            <Route path="*" element={<Home />} />
+            <Route path="/trustees" element={<Trustees trustees={trusteesData} />} />
           </Routes>
         </Layout>
       </Router>

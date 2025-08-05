@@ -65,7 +65,7 @@ const ImageContainer = styled.div`
     content: "";
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.4); /* darkness level: 0 = transparent, 1 = black */
+    background-color: rgba(0, 0, 0, 0.6); /* darkness level: 0 = transparent, 1 = black */
     z-index: 0;
   }
 
@@ -115,7 +115,7 @@ const LeftVisual = styled.div`
 const GradientBackground = styled.div`
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgb(9, 125, 202) 23%, #006400 26%, #e3e70d 28%, #d30c0c 30%, rgb(255, 255, 255) 30%);
+  background: radial-gradient(circle at center, rgb(9, 125, 202) 23%, #006400 26%, #e3e70d 28%, #d30c0c 30%, rgba(255, 255, 255, 0) 30%);
   display: flex;
   align-items: center;
   justify-content: center;
