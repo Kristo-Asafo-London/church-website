@@ -149,10 +149,11 @@ const DonationSection = () => {
   };
 
   return (
-    <DonationContainer>
+    <DonationContainer id="donations">
       <SectionTitle>Our Donations</SectionTitle>
       <DonationDescription>
-        As part of our commitment to giving back, we host and participate in various events that support our community. From fundraising galas to volunteer days, our team is dedicated to making a positive impact through our work.
+        As part of our commitment to giving back, we host and participate in various events that support our community. From fundraising galas to
+        volunteer days, our team is dedicated to making a positive impact through our work.
       </DonationDescription>
       <DonationGrid>
         {/* Video cards */}
@@ -262,8 +263,7 @@ const DonationSection = () => {
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen>
-                  </iframe>
+                    allowFullScreen></iframe>
                 </VideoWrapper>
               ) : (
                 <>
@@ -304,12 +304,13 @@ const DonationSection = () => {
 };
 
 // Styled components
-const DonationContainer = styled.section`
+const DonationContainer = styled.div`
   margin: 0 auto;
   padding: 6rem ${theme.spacing.large};
   background: linear-gradient(135deg, ${lighten(0.45, theme.colors.light)} 0%, ${theme.colors.white} 100%);
   position: relative;
   overflow: hidden;
+
   &::before {
     content: "";
     position: absolute;

@@ -3,8 +3,9 @@ import React from "react";
 import { FaLinkedin, FaTwitter, FaGlobe } from "react-icons/fa";
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
+import { shadowColors } from "../common/common";
 
- interface Trustee {
+interface Trustee {
   id: string;
   name: string;
   role: string;
@@ -70,11 +71,11 @@ export const trusteesData: Trustee[] = [
 const Trustees: React.FC<TrusteesProps> = ({ trustees }) => {
   return (
     <TrusteesContainer id="trustees">
-          <TrusteesTitle>Our Trustees</TrusteesTitle>
-          <TrusteesDescription>
-              Meet the dedicated individuals who guide our organization with their expertise and passion. 
-                Each trustee brings a unique set of skills and experiences that enrich our mission and help us serve the community effectively.
-          </TrusteesDescription>
+      <TrusteesTitle>Our Trustees</TrusteesTitle>
+      <TrusteesDescription>
+        Meet the dedicated individuals who guide our organization with their expertise and passion. Each trustee brings a unique set of skills and
+        experiences that enrich our mission and help us serve the community effectively.
+      </TrusteesDescription>
       <TrusteesGrid>
         {trustees.map((trustee) => (
           <TrusteeCard key={trustee.id}>
@@ -112,9 +113,23 @@ const Trustees: React.FC<TrusteesProps> = ({ trustees }) => {
 
 export default Trustees;
 
-export const TrusteesContainer = styled.section`
-  padding: 5rem 0;
-  background:  ${theme.colors.white};
+export const TrusteesContainer = styled.div`
+  margin: 0 auto;
+  padding: 6rem ${theme.spacing.large};
+  background: white;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, ${shadowColors.join(", ")});
+    z-index: 1;
+  }
 `;
 
 export const TrusteesTitle = styled.h2`

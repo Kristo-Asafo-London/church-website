@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../styles/theme";
 import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { shadowColors } from "../common/common";
 
 interface GalleryImage {
   id: string;
@@ -30,8 +31,7 @@ export const achievementGallery: GalleryImage[] = [
     alt: "Innovative Automobile",
     title: "Best Automobile Award",
     description: "Kantanka received the prestigious award for Best Automobile, recognizing innovation and excellence in engineering.",
-  }
-,
+  },
   {
     id: "3",
     src: "/gallery/assas.png",
@@ -58,11 +58,11 @@ export const achievementGallery: GalleryImage[] = [
     src: "/gallery/donation2.png",
     alt: "Donation To Children's Home",
     title: "Donation To Children's Home",
-    description: "Apostle Dr. Ing. Kwadwo Safo Donates Numerous Items To Osu Children's Home Worth GH₵200k"
-  }
+    description: "Apostle Dr. Ing. Kwadwo Safo Donates Numerous Items To Osu Children's Home Worth GH₵200k",
+  },
 ];
 
-const Gallery: React.FC<GalleryProps> = ({ images}) => {
+const Gallery: React.FC<GalleryProps> = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextImage = () => {
@@ -79,7 +79,7 @@ const Gallery: React.FC<GalleryProps> = ({ images}) => {
   );
 
   return (
-    <GalleryContainer>
+    <GalleryContainer id="gallery">
       <GalleryTitle>Notable Achievements</GalleryTitle>
       <GalleryCarousel>
         <GalleryTrack>
@@ -112,12 +112,26 @@ const Gallery: React.FC<GalleryProps> = ({ images}) => {
 
 export default Gallery;
 
-const GalleryContainer = styled.section`
+const GalleryContainer = styled.div`
+  margin: 0 auto;
   padding: 2rem 0;
   position: relative;
   overflow: hidden;
   max-width: 100vw;
-  height: 100vh;
+  height: 65vh;
+  max-width: 1250px;
+  width: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, ${shadowColors.join(", ")});
+    z-index: 1;
+  }
 
   @media (min-width: ${theme.breakpoints.mobile}) {
     padding: 4rem 0;
@@ -226,6 +240,8 @@ const GalleryCarousel = styled.div`
   align-items: center;
   height: 300px;
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 
   @media (min-width: ${theme.breakpoints.mobile}) {
     height: 400px;
@@ -233,11 +249,11 @@ const GalleryCarousel = styled.div`
   }
 `;
 
- const ImageInfo = styled.div<{ visible: boolean }>`
+const ImageInfo = styled.div<{ visible: boolean }>`
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -80px;
+  bottom: -180px;
   text-align: center;
   opacity: ${(props) => (props.visible ? "1" : "0")};
   transition: opacity 0.3s ease;
@@ -277,7 +293,7 @@ const GalleryCarousel = styled.div`
     }
   }
 
-    @media (max-width: 400px) {
+  @media (max-width: 400px) {
     bottom: -200px;
     padding: 0.8rem;
 

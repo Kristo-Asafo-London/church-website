@@ -6,7 +6,7 @@ import { shadowColors } from "../common/common";
 
 export const ContactUs = () => {
   return (
-    <ContactContainer>
+    <ContactContainer id="contact">
       <ContactHeader>
         <h1>Connect With Us</h1>
         <p className="subtitle">We'd love to hear from you. Reach out through any of these channels and we'll respond as quickly as possible.</p>
@@ -102,16 +102,26 @@ const ContactContainer = styled.div`
   background: linear-gradient(135deg, ${lighten(0.45, theme.colors.light)} 0%, ${theme.colors.white} 100%);
   position: relative;
   overflow: hidden;
+  max-width: 1250px;
+  width: 100%;
 
   &::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 200%;
     height: 10px;
     background: linear-gradient(90deg, ${shadowColors.join(", ")});
     z-index: 1;
+  }
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding: 4rem ${theme.spacing.medium};
+  }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    padding: 3rem ${theme.spacing.small};
   }
 `;
 

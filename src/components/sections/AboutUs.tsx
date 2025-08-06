@@ -3,11 +3,10 @@ import { FaChurch, FaLightbulb, FaCogs, FaHandsHelping } from 'react-icons/fa';
 import { theme } from '../../styles/theme';
 import { lighten } from 'polished';
 import { shadowColors } from "../common/common";
-import Gallery, { achievementGallery } from './Gallery';
 
 export const AboutUs = () => {
   return (
-    <AboutContainer>
+    <AboutContainer id="about">
       <AboutHeader>
         <h1>Kristo Asafo, London</h1>
         <p className="subtitle">
@@ -71,7 +70,6 @@ export const AboutUs = () => {
           </ExpertiseSection>
         </BioContent>
       </AboutContent>
-     <Gallery images={achievementGallery} title="Gallery" />
     </AboutContainer>
   );
 };
@@ -82,6 +80,7 @@ const AboutContainer = styled.div`
   background: linear-gradient(135deg, ${lighten(0.45, theme.colors.light)} 0%, ${theme.colors.white} 100%);
   position: relative;
   overflow: hidden;
+  max-width: 1200px;
 
   &::before {
     content: "";

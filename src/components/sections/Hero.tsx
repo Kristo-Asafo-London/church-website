@@ -6,7 +6,7 @@ export const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <ImageContainer>
+    <ImageContainer id="home">
       <HeroGrid>
         <LeftVisual>
           <GradientBackground>

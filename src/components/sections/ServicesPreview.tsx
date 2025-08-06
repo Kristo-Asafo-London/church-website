@@ -33,7 +33,7 @@ export const ServicesPreview = () => {
   ];
 
   return (
-    <ServicesPreviewContainer>
+    <ServicesPreviewContainer id="values">
       <SectionHeader>
         <h2>Our Core Values</h2>
         <p>Guiding principles that shape our approach to service and community impact</p>
@@ -41,11 +41,11 @@ export const ServicesPreview = () => {
 
       <ServicesGrid>
         {services.map((service, index) => (
-          <ServiceCard 
-            key={index} 
+          <ServiceCard
+            key={index}
             title={service.title}
             subtext={service.subtext}
-            description={service.description} 
+            description={service.description}
             icon={service.icon}
             color={service.color}
           />
