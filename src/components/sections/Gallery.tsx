@@ -276,4 +276,17 @@ const GalleryCarousel = styled.div`
       font-size: 1rem;
     }
   }
+
+    @media (max-width: 400px) {
+    bottom: -200px;
+    padding: 0.8rem;
+
+    h3 {
+      font-size: 0.9rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
 `;
