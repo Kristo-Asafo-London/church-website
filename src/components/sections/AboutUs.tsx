@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { FaChurch, FaLightbulb, FaCogs, FaHandsHelping } from 'react-icons/fa';
 import { theme } from '../../styles/theme';
 import { lighten } from 'polished';
-import { Achievements } from "./Achievements";
 import { shadowColors } from "../common/common";
+import Gallery, { achievementGallery } from './Gallery';
 
 export const AboutUs = () => {
   return (
@@ -71,7 +71,7 @@ export const AboutUs = () => {
           </ExpertiseSection>
         </BioContent>
       </AboutContent>
-      <Achievements />
+     <Gallery images={achievementGallery} title="Gallery" />
     </AboutContainer>
   );
 };

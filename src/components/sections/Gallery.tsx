@@ -16,45 +16,53 @@ interface GalleryProps {
   title?: string;
 }
 
-export const galleryData: GalleryImage[] = [
+export const achievementGallery: GalleryImage[] = [
   {
     id: "1",
-    src: "/trustees/admin.jpg",
-    alt: "Beautiful landscape",
-    title: "Mountain Sunrise",
-    description: "Captured during our annual retreat in the Swiss Alps",
+    src: "/gallery/emeritus.png",
+    alt: "Emeritus Status",
+    title: "Emeritus Professor Award",
+    description: "Apostle Dr. Kwadwo Safo Kantanka was conferred the honorary title of Professor Emeritus by Alfred Nobel University in Ukraine.",
   },
   {
     id: "2",
-    src: "/trustees/chair.jpg",
-    alt: "Team meeting",
-    title: "Strategy Session",
-    description: "Our team planning the next phase of development",
-  },
+    src: "/gallery/bestcar.png",
+    alt: "Innovative Automobile",
+    title: "Best Automobile Award",
+    description: "Kantanka received the prestigious award for Best Automobile, recognizing innovation and excellence in engineering.",
+  }
+,
   {
     id: "3",
-    src: "/trustees/organiser.jpg",
-    alt: "Product showcase",
-    title: "New Product Launch",
-    description: "Introducing our latest innovation to the market",
+    src: "/gallery/assas.png",
+    alt: "Educational Institutions",
+    title: "Educational Institutions",
+    description: " STEM-focused institution nurturing young talents in Ghana and Africa, providing quality education in sciences and technology.",
   },
   {
     id: "4",
-    src: "/trustees/member.jpg",
+    src: "/gallery/medicine.png",
     alt: "Award ceremony",
-    title: "Industry Recognition",
+    title: "Health and Herbal Discoveries",
     description: "Receiving the Excellence in Design award for 2023",
   },
   {
     id: "5",
-    src: "/trustees/admin.jpg",
-    alt: "Community event",
-    title: "Community Outreach",
-    description: "Volunteering at the local children's hospital",
+    src: "/gallery/donation.png",
+    alt: "Donation To Muslim Community",
+    title: "Donation To Muslim Community",
+    description: "Dr. Safo Kantanka donates GH¢80,000, and other items to National Chief Imam",
   },
+  {
+    id: "6",
+    src: "/gallery/donation2.png",
+    alt: "Donation To Muslim Community",
+    title: "Donation To Muslim Community",
+    description: "Apostle Dr. Ing. Kwadwo Safo Donates Numerous Items To Osu Children's Home Worth GH₵200k"
+  }
 ];
 
-const Gallery: React.FC<GalleryProps> = ({ images, title = "Gallery" }) => {
+const Gallery: React.FC<GalleryProps> = ({ images}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextImage = () => {
@@ -72,7 +80,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, title = "Gallery" }) => {
 
   return (
     <GalleryContainer>
-      <GalleryTitle>{title}</GalleryTitle>
+      <GalleryTitle>Notable Achievements</GalleryTitle>
       <GalleryCarousel>
         <GalleryTrack>
           {visibleImages.map((image, i) => {
@@ -109,6 +117,7 @@ const GalleryContainer = styled.section`
   position: relative;
   overflow: hidden;
   max-width: 100vw;
+  height: 100vh;
 
   @media (min-width: ${theme.breakpoints.mobile}) {
     padding: 4rem 0;
@@ -124,22 +133,6 @@ const GalleryTitle = styled.h2`
   @media (min-width: ${theme.breakpoints.mobile}) {
     font-size: 2.5rem;
     margin-bottom: 3rem;
-  }
-`;
-
-const GalleryCarousel = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-  position: relative;
-  perspective: 1000px;
-  max-width: 100%;
-  
-//   background: ${theme.colors.light};
-
-  @media (min-width: ${theme.breakpoints.mobile}) {
-    height: 400px;
   }
 `;
 
@@ -191,7 +184,7 @@ const NavButton = styled.button<{ position: "left" | "right" }>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.7);
+  background: ${theme.colors.light};
   border: none;
   width: 40px;
   height: 40px;
@@ -205,14 +198,14 @@ const NavButton = styled.button<{ position: "left" | "right" }>`
   ${(props) => (props.position === "left" ? "left: 5px;" : "right: 5px;")}
 
   &:hover {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(7, 11, 92, 0.9);
     transform: translateY(-50%) scale(1.1);
   }
 
   svg {
     width: 20px;
     height: 20px;
-    color: ${theme.colors.primary};
+    color: white;
   }
 
   @media (min-width: ${theme.breakpoints.mobile}) {
@@ -227,35 +220,56 @@ const NavButton = styled.button<{ position: "left" | "right" }>`
   }
 `;
 
-export const ImageInfo = styled.div<{ visible: boolean }>`
+const GalleryCarousel = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  position: relative;
+
+  @media (min-width: ${theme.breakpoints.mobile}) {
+    height: 400px;
+    padding: 0 40px;
+  }
+`;
+
+ const ImageInfo = styled.div<{ visible: boolean }>`
   position: absolute;
   left: 0;
   right: 0;
+  bottom: -80px;
   text-align: center;
   opacity: ${(props) => (props.visible ? "1" : "0")};
   transition: opacity 0.3s ease;
-  padding: 0 1rem;
-  margin-top: 1000px; // Added extra margin for better spacing
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 20px;
+  max-width: calc(100% - 40px);
 
   h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
     color: ${theme.colors.text};
   }
 
   p {
-    color: ${theme.colors.text};
-    max-width: 500px;
+    color: ${theme.colors.dark};
+    max-width: 100%;
     margin: 0 auto;
-    font-size: 0.9rem;
-    line-height: 1.4; // Added for better readability
+    font-size: 0.8rem;
+    line-height: 1.4;
   }
 
   @media (min-width: ${theme.breakpoints.mobile}) {
-    bottom: -80px; // Adjusted for desktop as well
+    bottom: -160px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1.5rem;
 
     h3 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
 
     p {
@@ -263,7 +277,16 @@ export const ImageInfo = styled.div<{ visible: boolean }>`
     }
   }
 
-  @media (min-width: ${theme.breakpoints.mobile}) {
-    bottom: -70px; // Further adjustment for larger screens
+  @media (max-width: 400px) {
+    bottom: -100px;
+    padding: 0.8rem;
+
+    h3 {
+      font-size: 0.9rem;
+    }
+
+    p {
+      font-size: 0.7rem;
+    }
   }
 `;
