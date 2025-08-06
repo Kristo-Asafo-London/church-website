@@ -258,7 +258,7 @@ const GalleryCarousel = styled.div`
     color: ${theme.colors.dark};
     max-width: 100%;
     margin: 0 auto;
-    font-size: 0.8rem;
+    font-size: 1rem;
     line-height: 1.4;
   }
 
@@ -274,19 +274,6 @@ const GalleryCarousel = styled.div`
 
     p {
       font-size: 1rem;
-    }
-  }
-
-  @media (max-width: 400px) {
-    bottom: -100px;
-    padding: 0.8rem;
-
-    h3 {
-      font-size: 0.9rem;
-    }
-
-    p {
-      font-size: 0.7rem;
     }
   }
 `;
