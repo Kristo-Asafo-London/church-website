@@ -9,6 +9,7 @@ interface Trustee {
   id: string;
   name: string;
   role: string;
+  member?: boolean;
   bio?: string;
   imageUrl: string;
   socialLinks?: {
@@ -27,6 +28,7 @@ export const trusteesData: Trustee[] = [
     id: "1",
     name: "Mr. Dennice Yeboah",
     role: "Chairperson",
+    member: true,
     bio: "With over 20 years of experience in nonprofit leadership, Mr. Yeboah brings strategic vision to our organization.",
     imageUrl: "/trustees/chair.jpg",
     // socialLinks: {
@@ -38,6 +40,7 @@ export const trusteesData: Trustee[] = [
     id: "2",
     name: "Mr. Akwasi Anane",
     role: "Organisational Contact",
+    member: true,
     bio: "Mr. Anane is a dedicated professional with a passion for community development. He has been instrumental in organizing events and initiatives that foster community engagement.",
     imageUrl: "/trustees/organiser.jpg",
     // socialLinks: {
@@ -45,25 +48,27 @@ export const trusteesData: Trustee[] = [
     // },
   },
   {
-    id: "3",
-    name: "Mr. Peter Okyere Boakye",
-    role: "Administrator",
-    bio: "Mr. Okyere Boakye has dedicated his career to building bridges between organizations and the communities they serve. He has a strong background in administration and organizational development.",
-    imageUrl: "/trustees/admin.jpg",
-    // socialLinks: {
-    //   twitter: "https://twitter.com/peterokyere",
-    //   website: "https://peterokyere.com",
-    // },
-  },
-  {
     id: "4",
     name: "Mr. Daniel Yanogo",
     role: "Trustee Member",
+    member: true,
     bio: "Mr. Yanogo is a dedicated advocate for community development and has been involved in various initiatives aimed at improving the lives of those in need.",
     imageUrl: "/trustees/member.jpg",
     // socialLinks: {
     //   twitter: "https://twitter.com/danielyanogo",
     //   website: "https://danielyanogo.com",
+    // },
+  },
+  {
+    id: "3",
+    name: "Mr. Peter Okyere Boakye",
+    role: "Administrator",
+    member: false,
+    bio: "Mr. Okyere Boakye has dedicated his career to building bridges between organizations and the communities they serve. He has a strong background in administration and organizational development.",
+    imageUrl: "/trustees/admin.jpg",
+    // socialLinks: {
+    //   twitter: "https://twitter.com/peterokyere",
+    //   website: "https://peterokyere.com",
     // },
   },
 ];
@@ -83,6 +88,7 @@ const Trustees: React.FC<TrusteesProps> = ({ trustees }) => {
             <TrusteeInfo>
               <TrusteeName>{trustee.name}</TrusteeName>
               <TrusteeRole>{trustee.role}</TrusteeRole>
+              {trustee.member && <TrusteeMemberBadge>Member</TrusteeMemberBadge>}
               {trustee.bio && <TrusteeBio>{trustee.bio}</TrusteeBio>}
               {trustee.socialLinks && (
                 <SocialLinks>
@@ -147,6 +153,15 @@ export const TrusteesTitle = styled.h2`
     background: ${theme.colors.light};
     margin: 1rem auto 0;
   }
+`;
+
+export const TrusteeMemberBadge = styled.span`
+  display: inline-block;
+  background-color: ${theme.colors.accent};
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
 `;
 
 const TrusteesDescription = styled.p`
