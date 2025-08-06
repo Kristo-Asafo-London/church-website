@@ -56,8 +56,8 @@ export const achievementGallery: GalleryImage[] = [
   {
     id: "6",
     src: "/gallery/donation2.png",
-    alt: "Donation To Muslim Community",
-    title: "Donation To Muslim Community",
+    alt: "Donation To Children's Home",
+    title: "Donation To Children's Home",
     description: "Apostle Dr. Ing. Kwadwo Safo Donates Numerous Items To Osu Children's Home Worth GH₵200k"
   }
 ];

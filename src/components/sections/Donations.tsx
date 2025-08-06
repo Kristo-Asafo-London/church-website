@@ -61,7 +61,7 @@ const DonationItems: DonationItem[] = [
   {
     id: 1,
     type: "video",
-    url: "/videos/tower_bridge.mp4",
+    url: "https://www.youtube.com/embed/Ne7GW6OGVu8",
     thumbnail: "donations/nananti.jpg",
     caption: "Celebrating the 73rd Birthday of the Founder and Leader at Tower Bridge, after a successful donation event to the Hope Family Trust.",
     eventType: "Birthday Celebration",
@@ -84,11 +84,9 @@ const float = keyframes`
 const groupImages = (items: DonationItem[], size: number) => {
   const imageItems = items.filter((item) => item.type === "image");
   const grouped = [];
-
   for (let i = 0; i < imageItems.length; i += size) {
     grouped.push(imageItems.slice(i, i + size));
   }
-
   return grouped;
 };
 
@@ -98,6 +96,7 @@ const DonationSection = () => {
   const [cardColors, setCardColors] = useState<{ [key: number]: string }>({});
   const [currentModalGroup, setCurrentModalGroup] = useState<DonationItem[] | null>(null);
   const [currentModalIndex, setCurrentModalIndex] = useState(0);
+
   const groupedImages = groupImages(DonationItems, 4);
 
   useEffect(() => {
@@ -106,7 +105,6 @@ const DonationSection = () => {
       colors[item.id] = shadowColors[Math.floor(Math.random() * shadowColors.length)];
     });
     setCardColors(colors);
-
     if (currentSlideIndex.length !== groupedImages.length) {
       setCurrentSlideIndex(Array(groupedImages.length).fill(0));
     }
@@ -130,10 +128,8 @@ const DonationSection = () => {
 
   const handleModalOpen = (item: DonationItem) => {
     setSelectedItem(item);
-
     if (item.type === "image") {
       const group = groupedImages.find((group) => group.some((img) => img.id === item.id));
-
       if (group) {
         setCurrentModalGroup(group);
         setCurrentModalIndex(group.findIndex((img) => img.id === item.id));
@@ -145,7 +141,6 @@ const DonationSection = () => {
 
   const navigateModalImage = (direction: number) => {
     if (!currentModalGroup) return;
-
     setCurrentModalIndex((prev) => {
       const newIndex = (prev + direction + currentModalGroup.length) % currentModalGroup.length;
       setSelectedItem(currentModalGroup[newIndex]);
@@ -159,7 +154,6 @@ const DonationSection = () => {
       <DonationDescription>
         As part of our commitment to giving back, we host and participate in various events that support our community. From fundraising galas to volunteer days, our team is dedicated to making a positive impact through our work.
       </DonationDescription>
-
       <DonationGrid>
         {/* Video cards */}
         {DonationItems.filter((item) => item.type === "video").map((item, index) => (
@@ -186,12 +180,10 @@ const DonationSection = () => {
             </DonationCard>
           </motion.div>
         ))}
-
         {/* Image sliders */}
         {groupedImages.map((imageGroup, groupIndex) => {
           const currentIndex = currentSlideIndex[groupIndex] || 0;
           const currentImage = imageGroup[currentIndex];
-
           return (
             <motion.div
               key={`image-group-${groupIndex}`}
@@ -253,7 +245,6 @@ const DonationSection = () => {
           );
         })}
       </DonationGrid>
-
       {/* Modal for expanded view */}
       <AnimatePresence>
         {selectedItem && (
@@ -262,13 +253,17 @@ const DonationSection = () => {
               <CloseButton onClick={() => setSelectedItem(null)}>
                 <FaTimes />
               </CloseButton>
-
               {selectedItem.type === "video" ? (
                 <VideoWrapper>
-                  <video controls autoPlay>
-                    <source src={selectedItem.url} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={selectedItem.url}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen>
+                  </iframe>
                 </VideoWrapper>
               ) : (
                 <>
@@ -280,7 +275,6 @@ const DonationSection = () => {
                     }}>
                     <FaChevronLeft />
                   </ModalNavButton>
-
                   <ModalNavButton
                     position="right"
                     onClick={(e) => {
@@ -289,11 +283,9 @@ const DonationSection = () => {
                     }}>
                     <FaChevronRight />
                   </ModalNavButton>
-
                   <ExpandedImage src={selectedItem.url} alt={selectedItem.caption} />
                 </>
               )}
-
               <ModalCaption>
                 <h3>{selectedItem.eventType}</h3>
                 <p>{selectedItem.caption}</p>
@@ -318,7 +310,6 @@ const DonationContainer = styled.section`
   background: linear-gradient(135deg, ${lighten(0.45, theme.colors.light)} 0%, ${theme.colors.white} 100%);
   position: relative;
   overflow: hidden;
-
   &::before {
     content: "";
     position: absolute;
@@ -338,7 +329,6 @@ const SectionTitle = styled.h2`
   text-align: center;
   color: ${theme.colors.text};
   position: relative;
-
   &::after {
     content: "";
     position: absolute;
@@ -370,7 +360,6 @@ const DonationGrid = styled.div`
   margin-top: 3rem;
   position: relative;
   z-index: 2;
-
   @media (max-width: ${theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
   }
@@ -391,13 +380,11 @@ const DonationCard = styled.div<DonationCardProps>`
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 0 0 1px ${({ $color }) => $color} inset, 0 0 10px ${({ $color }) => $color};
   animation: ${float} 6s ease-in-out infinite, ${glow} 4s ease-in-out infinite;
   animation-delay: ${() => Math.random() * 2}s;
-
   &:hover {
     transform: translateY(-10px) scale(1.02);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 0 0 2px ${({ $color }) => $color} inset, 0 0 20px ${({ $color }) => $color};
     animation: none;
   }
-
 `;
 
 const ImageSliderContainer = styled.div`
@@ -407,10 +394,9 @@ const ImageSliderContainer = styled.div`
   overflow: hidden;
   border-radius: 8px 8px 0 0;
   filter: brightness(0.8);
-
-    &:hover {
-        filter: brightness(1);
-    }
+  &:hover {
+    filter: brightness(1);
+  }
 `;
 
 const SliderImage = styled.img`
@@ -419,7 +405,6 @@ const SliderImage = styled.img`
   object-fit: cover;
   display: block;
   transition: transform 0.5s ease;
-
   ${DonationCard}:hover & {
     transform: scale(1.05);
   }
@@ -434,7 +419,7 @@ const SliderButton = styled.button<SliderButtonProps>`
   top: 50%;
   ${({ position }) => (position === "left" ? "left: 1rem" : "right: 1rem")};
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  background: ${theme.colors.light};
   color: white;
   border: none;
   width: 40px;
@@ -446,12 +431,10 @@ const SliderButton = styled.button<SliderButtonProps>`
   cursor: pointer;
   z-index: 2;
   transition: all 0.3s ease;
-
   &:hover {
     background: rgba(0, 0, 0, 0.8);
     transform: translateY(-50%) scale(1.1);
   }
-
   svg {
     font-size: 1.2rem;
   }
@@ -478,7 +461,6 @@ const SliderDot = styled.div<SliderDotProps>`
   background: ${({ $active }) => ($active ? theme.colors.primary : "rgba(255, 255, 255, 0.5)")};
   cursor: pointer;
   transition: all 0.3s ease;
-
   &:hover {
     background: ${theme.colors.primary};
     transform: scale(1.2);
@@ -492,18 +474,15 @@ const VideoThumbnail = styled.div`
   overflow: hidden;
   border-radius: 8px 8px 0 0;
   filter: brightness(0.8);
-
   &:hover {
     filter: brightness(1);
   }
-
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
   }
-
   ${DonationCard}:hover & img {
     transform: scale(1.05);
   }
@@ -526,7 +505,6 @@ const PlayButton = styled.div`
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   z-index: 2;
-
   ${DonationCard}:hover & {
     background: ${theme.colors.white};
     transform: translate(-50%, -50%) scale(1.1);
@@ -567,7 +545,6 @@ const MediaType = styled.div`
   color: ${theme.colors.textLight};
   font-size: 0.95rem;
   font-weight: 500;
-
   svg {
     color: ${theme.colors.light};
   }
@@ -620,12 +597,10 @@ const ModalNavButton = styled.button<ModalNavButtonProps>`
   cursor: pointer;
   z-index: 10;
   transition: all 0.3s ease;
-
   &:hover {
     background: rgba(0, 0, 0, 0.9);
     transform: translateY(-50%) scale(1.1);
   }
-
   svg {
     font-size: 1.5rem;
   }
@@ -648,7 +623,6 @@ const CloseButton = styled.button`
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-
   &:hover {
     background: ${theme.colors.primary};
     transform: scale(1.1);
@@ -657,16 +631,15 @@ const CloseButton = styled.button`
 
 const VideoWrapper = styled.div`
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
   position: relative;
-
-  video {
+  iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: block;
   }
 `;
 
@@ -680,13 +653,11 @@ const ExpandedImage = styled.img`
 const ModalCaption = styled.div`
   padding: 2rem;
   text-align: center;
-
   h3 {
     color: ${theme.colors.text};
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
   }
-
   p {
     font-size: 1.1rem;
     color: ${theme.colors.text};
