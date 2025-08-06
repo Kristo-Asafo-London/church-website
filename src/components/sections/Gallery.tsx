@@ -118,7 +118,7 @@ const GalleryContainer = styled.div`
   position: relative;
   overflow: hidden;
   max-width: 100vw;
-  height: 65vh;
+  height: 85vh;
   max-width: 1250px;
   width: 100%;
 
