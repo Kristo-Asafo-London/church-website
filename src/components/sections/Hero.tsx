@@ -120,6 +120,10 @@ const GradientBackground = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 16px;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+  margin-top: -10rem;
+  }
 `;
 
 const StarSystem = styled.div`
@@ -181,10 +185,15 @@ const RightContent = styled.div`
   }
 
   @media (max-width: ${theme.breakpoints.tablet}) {
-    text-align: center;
+    margin-top: -10rem;
+
+    h1 {
+      text-align: center;
+    }
 
     p {
       margin: 0 auto ${theme.spacing.large};
+      text-align: left;
     }
   }
 `;
