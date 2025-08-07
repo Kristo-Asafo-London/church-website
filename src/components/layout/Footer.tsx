@@ -111,7 +111,7 @@ const FooterButton = styled.button`
   margin-bottom: ${theme.spacing.small};
   display: block;
   text-align: left;
-  font-size: 1rem;
+  font-size: 1.13rem;
   cursor: pointer;
   transition: color 0.3s ease;
   padding: 0;
