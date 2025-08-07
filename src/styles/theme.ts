@@ -81,6 +81,7 @@ export const GlobalStyle = createGlobalStyle`
   p {
     margin-bottom: ${theme.spacing.medium};
     color: ${theme.colors.textLight};
+    font-size: 1.10rem;
   }
 
   /* Social media color classes */

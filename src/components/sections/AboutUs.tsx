@@ -120,7 +120,7 @@ const AboutHeader = styled.div`
   }
 
   p.subtitle {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: ${theme.colors.text};
     max-width: 800px;
     margin: 0 auto;

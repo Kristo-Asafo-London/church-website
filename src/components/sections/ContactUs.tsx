@@ -137,7 +137,7 @@ const ContactHeader = styled.div`
   }
 
   .subtitle {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: ${theme.colors.text};
     max-width: 700px;
     margin: 0 auto;

@@ -268,10 +268,9 @@ const ImageInfo = styled.div<{ visible: boolean }>`
 
   p {
     color: ${theme.colors.dark};
+    font-size: 1.10rem;
     max-width: 100%;
     margin: 0 auto;
-    font-size: 1rem;
-    line-height: 1.4;
   }
 
   @media (min-width: ${theme.breakpoints.mobile}) {
@@ -285,7 +284,7 @@ const ImageInfo = styled.div<{ visible: boolean }>`
     }
 
     p {
-      font-size: 1rem;
+      font-size: 1.10rem;
     }
   }
 
@@ -294,11 +293,11 @@ const ImageInfo = styled.div<{ visible: boolean }>`
     padding: 0.8rem;
 
     h3 {
-      font-size: 0.9rem;
+      font-size: 1.10rem;
     }
 
     p {
-      font-size: 1rem;
+      font-size: 1.10rem;
     }
   }
 `;

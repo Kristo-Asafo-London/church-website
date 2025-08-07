@@ -52,7 +52,7 @@ const orbit = keyframes`
 const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 70vh;
+  height: 100vh;
   padding: 2rem;
   display: flex;
   align-items: center;

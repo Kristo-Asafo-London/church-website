@@ -143,7 +143,6 @@ export const TrusteesTitle = styled.h2`
 `;
 
 export const TrusteesDescription = styled.p`
-  font-size: 1rem;
   color: ${theme.colors.textLight};
   text-align: center;
   margin: 0 auto 2rem;
@@ -219,7 +218,7 @@ export const TrusteeMemberBadge = styled.span`
 
 export const TrusteeBio = styled.p`
   color: ${theme.colors.text};
-  font-size: 0.95rem;
+  font-size: 1.10rem;
   line-height: 1.5;
   margin-bottom: 1rem;
   text-align: left;
