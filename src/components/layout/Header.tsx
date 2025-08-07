@@ -78,6 +78,15 @@ const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   z-index: 100;
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    width: fit-content;
+    border-radius: 50%;
+    background-color: ${theme.colors.light};
+    margin: 1rem;
+    position: fixed;
+  }
+
 `;
 
 const Nav = styled.nav`
@@ -167,12 +176,7 @@ const MobileMenuButton = styled.button`
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 101;
-  padding: ${theme.spacing.small};
-font-family: inherit;
-  &:hover {
-    color: ${theme.colors.primary};
-  }
-
+  font-family: inherit;
   @media (max-width: ${theme.breakpoints.tablet}) {
     display: block;
   }
