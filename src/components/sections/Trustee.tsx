@@ -181,15 +181,13 @@ export const TrusteeCard = styled.div`
 `;
 
 export const TrusteeImage = styled.div<{ imageUrl: string }>`
-  height: 250px;
+  height: 300px;
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center;
-
-  @media (max-width: 480px) {
-    height: 200px;
-  }
+  background-repeat: no-repeat;
 `;
+
 
 export const TrusteeInfo = styled.div`
   padding: 1.5rem;

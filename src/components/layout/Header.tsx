@@ -11,12 +11,34 @@ export const Header = () => {
   };
 
   const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-      setIsMenuOpen(false);
-    }
+    const target = document.getElementById(sectionId);
+    if (!target) return;
+  
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 2000; // milliseconds — increase this to slow it down
+    let startTime: number | null = null;
+  
+    const easeInOutQuad = (t: number, b: number, c: number, d: number): number => {
+      t /= d / 2;
+      if (t < 1) return c / 2 * t * t + b;
+      t--;
+      return -c / 2 * (t * (t - 2) - 1) + b;
+    };
+  
+    const animation = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+      else setIsMenuOpen(false); // close menu after scroll ends
+    };
+  
+    requestAnimationFrame(animation);
   };
+  
 
   return (
     <HeaderContainer>
@@ -106,7 +128,7 @@ const NavItem = styled.li`
     background: none;
     border: none;
     cursor: pointer;
-
+font-family: inherit;
     &:after {
       content: "";
       position: absolute;
@@ -146,7 +168,7 @@ const MobileMenuButton = styled.button`
   cursor: pointer;
   z-index: 101;
   padding: ${theme.spacing.small};
-
+font-family: inherit;
   &:hover {
     color: ${theme.colors.primary};
   }

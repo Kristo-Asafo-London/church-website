@@ -1,9 +1,36 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 import { theme } from '../../styles/theme';
-
+import { useCallback } from 'react';
 
 export const Footer = () => {
+  const scrollToSection = useCallback((sectionId: string) => {
+    const target = document.getElementById(sectionId);
+    if (!target) return;
+
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 800; // Adjust scroll speed
+    let startTime: number | null = null;
+
+    const easeInOutQuad = (t: number, b: number, c: number, d: number): number => {
+      t /= d / 2;
+      if (t < 1) return c / 2 * t * t + b;
+      t--;
+      return -c / 2 * (t * (t - 2) - 1) + b;
+    };
+
+    const animation = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    };
+
+    requestAnimationFrame(animation);
+  }, []);
+
   return (
     <FooterContainer>
       <FooterContent>
@@ -14,12 +41,12 @@ export const Footer = () => {
 
         <FooterSection>
           <h3>Quick Links</h3>
-          <FooterLink to="/">Home</FooterLink>
-          <FooterLink to="/donations">Donations</FooterLink>
-          <FooterLink to="/about">About Us</FooterLink>
-          <FooterLink to="/trustees">Our Trustees</FooterLink>
-          <FooterLink to="/contact">Contact</FooterLink>
-          <FooterLink to="/music">Music</FooterLink>
+          <FooterButton onClick={() => scrollToSection("home")}>Home</FooterButton>
+          <FooterButton onClick={() => scrollToSection("donations")}>Donations</FooterButton>
+          <FooterButton onClick={() => scrollToSection("about")}>About Us</FooterButton>
+          <FooterButton onClick={() => scrollToSection("trustees")}>Our Trustees</FooterButton>
+          <FooterButton onClick={() => scrollToSection("contact")}>Contact</FooterButton>
+          <FooterButton onClick={() => scrollToSection("music")}>Music</FooterButton>
         </FooterSection>
 
         <FooterSection>
@@ -36,13 +63,17 @@ export const Footer = () => {
         <br />
         Website by{" "}
         <a href="https://flexsaas.co.uk" target="_blank" rel="noopener noreferrer">
-          FlexSaaS <img src="/flexsaas.png" alt="FlexSaaS Logo" style={{ width: "15px", marginLeft: "5px", verticalAlign: "middle" }} />
+          FlexSaaS{" "}
+          <img
+            src="/flexsaas.png"
+            alt="FlexSaaS Logo"
+            style={{ width: "15px", marginLeft: "5px", verticalAlign: "middle" }}
+          />
         </a>
       </Copyright>
     </FooterContainer>
   );
 };
-
 
 const FooterContainer = styled.footer`
   background-color: ${theme.colors.dark};
@@ -65,7 +96,7 @@ const FooterSection = styled.div`
     margin-bottom: ${theme.spacing.medium};
     font-size: 1.2rem;
   }
-  
+
   p {
     color: ${theme.colors.textLight};
     margin-bottom: ${theme.spacing.small};
@@ -73,20 +104,21 @@ const FooterSection = styled.div`
   }
 `;
 
-const FooterLink = styled(NavLink)`
+const FooterButton = styled.button`
+  background: none;
+  border: none;
   color: ${theme.colors.textLight};
   margin-bottom: ${theme.spacing.small};
   display: block;
-  text-decoration: none;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
   transition: color 0.3s ease;
+  padding: 0;
+  font-family: inherit;
 
   &:hover {
     color: ${theme.colors.white};
-  }
-
-  &.active {
-    color: ${theme.colors.white};
-    font-weight: 500;
   }
 `;
 

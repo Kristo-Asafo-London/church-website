@@ -118,7 +118,7 @@ const GalleryContainer = styled.div`
   position: relative;
   overflow: hidden;
   max-width: 100vw;
-  height: 85vh;
+  height: 100vh;
   max-width: 1250px;
   width: 100%;
 
@@ -131,10 +131,6 @@ const GalleryContainer = styled.div`
     height: 10px;
     background: linear-gradient(90deg, ${shadowColors.join(", ")});
     z-index: 1;
-  }
-
-  @media (min-width: ${theme.breakpoints.mobile}) {
-    padding: 4rem 0;
   }
 `;
 
