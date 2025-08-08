@@ -1,9 +1,13 @@
 import styled, { keyframes } from "styled-components";
 import { theme } from "../../styles/theme";
-import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
-  const navigate = useNavigate();
+  const handleScrollTo = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <ImageContainer id="home">
@@ -28,8 +32,8 @@ export const Hero = () => {
             committed to serving humanity through compassion, technology, and community empowerment.
           </p>
           <ButtonGroup>
-            <ActionButton onClick={() => navigate("/about")}>About Us</ActionButton>
-            <ActionButton secondary onClick={() => navigate("/contact")}>
+            <ActionButton onClick={() => handleScrollTo("about")}>About Us</ActionButton>
+            <ActionButton secondary onClick={() => handleScrollTo("contact")}>
               Contact Us
             </ActionButton>
           </ButtonGroup>
@@ -122,7 +126,7 @@ const GradientBackground = styled.div`
   border-radius: 16px;
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-  margin-top: -10rem;
+    margin-top: -10rem;
   }
 `;
 
@@ -215,16 +219,12 @@ const ActionButton = styled.button<{ secondary?: boolean }>`
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  background-color: ${({ secondary }) =>
-    secondary ? theme.colors.white : theme.colors.light};
-  color: ${({ secondary }) =>
-    secondary ? theme.colors.light : theme.colors.white};
+  background-color: ${({ secondary }) => (secondary ? theme.colors.white : theme.colors.light)};
+  color: ${({ secondary }) => (secondary ? theme.colors.light : theme.colors.white)};
   transition: background 0.3s ease;
 
   &:hover {
-    background-color: ${({ secondary }) =>
-      secondary ? theme.colors.dark : theme.colors.dark};
-    color: ${({ secondary }) =>
-      secondary ? theme.colors.light : theme.colors.white};
+    background-color: ${({ secondary }) => (secondary ? theme.colors.dark : theme.colors.dark)};
+    color: ${({ secondary }) => (secondary ? theme.colors.light : theme.colors.white)};
   }
 `;

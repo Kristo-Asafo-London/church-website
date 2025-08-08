@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { shadowColors } from "../common/common";
 import { lighten } from "polished";
 import { theme } from "../../styles/theme";
+import { useEffect, useState } from "react";
 
 const galleryImages = [
   { id: 1, src: "/gallery/photos/kantanka1.png", alt: "Space" },
@@ -24,19 +25,30 @@ const galleryImages = [
 type GalleryImage = (typeof galleryImages)[number];
 
 function FuturisticGallery() {
-  const columns: GalleryImage[][] = [[], [], []];
+  const [numColumns, setNumColumns] = useState(3);
 
+  useEffect(() => {
+    const checkScreen = () => {
+      setNumColumns(window.innerWidth <= 768 ? 2 : 3);
+    };
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
+  // Create columns dynamically
+  const columns: GalleryImage[][] = Array.from({ length: numColumns }, () => []);
   galleryImages.forEach((img, i) => {
-    columns[i % 3].push(img);
+    columns[i % numColumns].push(img);
   });
 
   return (
-    <GalleryWrapper>
+    <GalleryWrapper id="photos">
       <SectionTitle>Founder's Gallery</SectionTitle>
       <ColumnsWrapper>
         {columns.map((col, idx) => (
           <Column key={idx}>
-            <ColumnInner speed={30 + idx * 10}>
+            <ColumnInner speed={90 + idx * 10}>
               {[...col, ...col].map((img, i) => (
                 <MasonryItem key={`${img.id}-${i}`}>
                   <img src={img.src} alt={img.alt} />
@@ -83,7 +95,6 @@ const GalleryWrapper = styled.div`
 const SectionTitle = styled.h2`
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
   text-align: center;
   color: ${theme.colors.text};
   position: relative;
@@ -106,13 +117,13 @@ const ColumnsWrapper = styled.div`
   display: flex;
   gap: 20px;
   justify-content: center;
-  overflow: hidden; /* Prevent scroll from bleeding over title */
+  overflow: hidden;
   position: relative;
 `;
 
 const Column = styled.div`
   flex: 1;
-  overflow: hidden; /* Keep images inside column */
+  overflow: hidden;
 `;
 
 const ColumnInner = styled.div<{ speed: number }>`
@@ -130,7 +141,7 @@ const ColumnInner = styled.div<{ speed: number }>`
 const MasonryItem = styled.div`
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
   background: white;
 
   img {

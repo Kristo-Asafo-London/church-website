@@ -47,6 +47,7 @@ export const Footer = () => {
           <FooterButton onClick={() => scrollToSection("trustees")}>Our Trustees</FooterButton>
           <FooterButton onClick={() => scrollToSection("contact")}>Contact</FooterButton>
           <FooterButton onClick={() => scrollToSection("music")}>Music</FooterButton>
+          <FooterButton onClick={() => scrollToSection("photos")}>Gallery</FooterButton>
         </FooterSection>
 
         <FooterSection>
@@ -63,12 +64,7 @@ export const Footer = () => {
         <br />
         Website by{" "}
         <a href="https://flexsaas.co.uk" target="_blank" rel="noopener noreferrer">
-          FlexSaaS{" "}
-          <img
-            src="/flexsaas.png"
-            alt="FlexSaaS Logo"
-            style={{ width: "15px", marginLeft: "5px", verticalAlign: "middle" }}
-          />
+          FlexSaaS <img src="/flexsaas.png" alt="FlexSaaS Logo" style={{ width: "15px", marginLeft: "5px", verticalAlign: "middle" }} />
         </a>
       </Copyright>
     </FooterContainer>

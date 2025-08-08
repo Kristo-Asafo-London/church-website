@@ -13,20 +13,20 @@ export const Header = () => {
   const scrollToSection = (sectionId: string) => {
     const target = document.getElementById(sectionId);
     if (!target) return;
-  
+
     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
     const duration = 2000; // milliseconds — increase this to slow it down
     let startTime: number | null = null;
-  
+
     const easeInOutQuad = (t: number, b: number, c: number, d: number): number => {
       t /= d / 2;
-      if (t < 1) return c / 2 * t * t + b;
+      if (t < 1) return (c / 2) * t * t + b;
       t--;
-      return -c / 2 * (t * (t - 2) - 1) + b;
+      return (-c / 2) * (t * (t - 2) - 1) + b;
     };
-  
+
     const animation = (currentTime: number) => {
       if (startTime === null) startTime = currentTime;
       const timeElapsed = currentTime - startTime;
@@ -35,10 +35,9 @@ export const Header = () => {
       if (timeElapsed < duration) requestAnimationFrame(animation);
       else setIsMenuOpen(false); // close menu after scroll ends
     };
-  
+
     requestAnimationFrame(animation);
   };
-  
 
   return (
     <HeaderContainer>
@@ -64,6 +63,9 @@ export const Header = () => {
           <NavItem>
             <button onClick={() => scrollToSection("music")}>Music</button>
           </NavItem>
+          <NavItem>
+            <button onClick={() => scrollToSection("photos")}>Gallery</button>
+          </NavItem>
         </NavItems>
       </Nav>
     </HeaderContainer>
@@ -83,12 +85,10 @@ const HeaderContainer = styled.header`
     width: fit-content;
     border-radius: 50%;
     background: transparent;
-    border: 3px solid ${theme.colors.light};
     margin: 1rem;
     position: fixed;
     padding: -1rem;
   }
-
 `;
 
 const Nav = styled.nav`
