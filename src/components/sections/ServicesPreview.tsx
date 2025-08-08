@@ -13,24 +13,30 @@ export const ServicesPreview = () => {
   const services = [
     {
       title: "Service To Mankind Is Service To God",
-      description: "Treat and serve all with respect and dignity, ensuring that our services contribute positively to society.",
+      subtext: "Matthew 25:40",
+      description:
+        "Treat and serve all with respect and dignity, ensuring that our services contribute positively to society, uplift communities, and create lasting impacts that reflect compassion and integrity.",
       icon: <FontAwesomeIcon icon={faHandsHelping} size="1x" />,
       color: theme.colors.primary,
     },
     {
       title: "Train up the child in the way he should go",
       subtext: "Proverbs 22:6",
-      description: "Empowering the next generation through education and mentorship, fostering a culture of lifelong learning.",
+      description:
+        "Empowering the next generation through education and mentorship, fostering a culture of lifelong learning, personal growth, and moral guidance that shapes confident individuals.",
       icon: <FontAwesomeIcon icon={faGraduationCap} size="1x" />,
       color: theme.colors.secondary,
     },
     {
-      title: "Have the Can Do Spirit",
-      description: "Fostering a positive mindset and resilience in the face of challenges.",
+      title: "Have the Can Do Spirit, believe in yourself",
+      subtext: "Philippians 4:13",
+      description:
+        "Fostering a positive mindset and resilience in the face of challenges, inspiring creativity, resourcefulness, and determination to achieve goals while maintaining hope and perseverance.",
       icon: <FontAwesomeIcon icon={faLightbulb} size="1x" />,
       color: theme.colors.accent,
     },
   ];
+  
 
   return (
     <ServicesPreviewContainer id="values">
