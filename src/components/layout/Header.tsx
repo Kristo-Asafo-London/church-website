@@ -82,9 +82,11 @@ const HeaderContainer = styled.header`
   @media (max-width: ${theme.breakpoints.tablet}) {
     width: fit-content;
     border-radius: 50%;
-    background-color: ${theme.colors.light};
+    background: transparent;
+    border: 3px solid ${theme.colors.light};
     margin: 1rem;
     position: fixed;
+    padding: -1rem;
   }
 
 `;
@@ -172,7 +174,7 @@ const MobileMenuButton = styled.button`
   display: none;
   background: none;
   border: none;
-  color: ${theme.colors.dark};
+  color: ${theme.colors.light};
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 101;
