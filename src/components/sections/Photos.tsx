@@ -12,9 +12,7 @@ const galleryImages = [
   { id: 5, src: "/gallery/photos/kantanka5.png", alt: "Stars" },
   { id: 6, src: "/gallery/photos/kantanka6.png", alt: "Innovation" },
   { id: 7, src: "/gallery/photos/kantanka7.png", alt: "AI" },
-  // { id: 8, src: "/gallery/photos/kantanka8.png", alt: "Robot" },
 ];
-
 
 // Gallery component
 const FuturisticGallery = () => {
@@ -24,17 +22,21 @@ const FuturisticGallery = () => {
   };
 
   return (
-    <GalleryContainer >
-      {galleryImages.map((image) => (
-        <GalleryItem key={image.id} size={getRandomSize()} data-parallax="true">
-          <GalleryImage src={image.src} alt={image.alt} />
-        </GalleryItem>
-      ))}
-    </GalleryContainer>
+    <Container>
+      <SectionTitle>Gallery</SectionTitle>
+      <GalleryContainer>
+        {galleryImages.map((image) => (
+          <GalleryItem key={image.id} size={getRandomSize()}>
+            <GalleryImage src={image.src} alt={image.alt} />
+          </GalleryItem>
+        ))}
+      </GalleryContainer>
+    </Container>
   );
 };
 
 export default FuturisticGallery;
+
 
 
 const float = keyframes`
@@ -49,35 +51,56 @@ const fadeIn = keyframes`
 `;
 
 // Styled components
-const GalleryContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 6rem ${theme.spacing.large};
-  gap: 20px;
-  background-color:rgba(214, 239, 242, 0.19);
+const Container = styled.div`
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
   margin-top: -4rem;
 
     &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 200%;
-      height: 10px;
-      background: linear-gradient(90deg, ${shadowColors.join(", ")});
-      z-index: 1;
-    }
-  
-    @media (max-width: ${theme.breakpoints.tablet}) {
-      padding: 4rem ${theme.spacing.medium};
-    }
-  
-    @media (max-width: ${theme.breakpoints.mobile}) {
-      padding: 3rem ${theme.spacing.small};
-    }
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, ${shadowColors.join(", ")});
+    z-index: 1;
+  }
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: ${theme.colors.text};
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: ${theme.colors.light};
+    border-radius: 2px;
+  }
+`;
+
+const GalleryContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 1rem;
+
+  position: relative;
+  overflow: hidden;
 `;
 
 const GalleryItem = styled.div<{ size: "large" | "medium" | "small" }>`
@@ -90,6 +113,7 @@ const GalleryItem = styled.div<{ size: "large" | "medium" | "small" }>`
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+
   &:hover {
     transform: scale(1.03);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
@@ -145,6 +169,7 @@ const GalleryImage = styled.img`
   display: block;
   transition: transform 0.5s ease;
   animation: ${float} 6s ease-in-out infinite;
+
   ${GalleryItem}:hover & {
     transform: scale(1.1);
   }
