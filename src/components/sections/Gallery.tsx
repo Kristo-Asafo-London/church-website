@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { theme } from "../../styles/theme";
 import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { shadowColors } from "../common/common";
 
 interface GalleryImage {
   id: string;
@@ -37,7 +36,7 @@ export const achievementGallery: GalleryImage[] = [
     src: "/gallery/assas.png",
     alt: "Educational Institutions",
     title: "Educational Institutions",
-    description: " STEM-focused institution nurturing young talents in Ghana and Africa, providing quality education in sciences and technology.",
+    description: "STEM-focused institution nurturing young talents in Ghana and Africa, providing quality education in sciences and technology.",
   },
   {
     id: "4",
@@ -73,39 +72,39 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
-  // Only show the current image and its immediate neighbors
-  const visibleImages = [(currentIndex - 1 + images.length) % images.length, currentIndex, (currentIndex + 1) % images.length].map(
-    (index) => images[index]
-  );
+  const visibleImages = [
+    (currentIndex - 1 + images.length) % images.length,
+    currentIndex,
+    (currentIndex + 1) % images.length,
+  ].map((index) => images[index]);
 
   return (
     <GalleryContainer id="gallery">
       <GalleryTitle>Notable Achievements</GalleryTitle>
-      <GalleryCarousel>
-        <GalleryTrack>
-          {visibleImages.map((image, i) => {
-            const position = i === 0 ? "left" : i === 1 ? "center" : "right";
-            return (
-              <GalleryItem key={image.id} position={position}>
-                <img src={image.src} alt={image.alt} />
-              </GalleryItem>
-            );
-          })}
-        </GalleryTrack>
-
-        <NavButton onClick={prevImage} position="left" aria-label="Previous image">
-          <FaChevronLeft />
-        </NavButton>
-
-        <NavButton onClick={nextImage} position="right" aria-label="Next image">
-          <FaChevronRight />
-        </NavButton>
-
-        <ImageInfo visible={true}>
+      <GalleryContent>
+        <GalleryCarousel>
+          <GalleryTrack>
+            {visibleImages.map((image, i) => {
+              const position = i === 0 ? "left" : i === 1 ? "center" : "right";
+              return (
+                <GalleryItem key={image.id} position={position}>
+                  <img src={image.src} alt={image.alt} />
+                </GalleryItem>
+              );
+            })}
+          </GalleryTrack>
+          <NavButton onClick={prevImage} position="left" aria-label="Previous image">
+            <FaChevronLeft />
+          </NavButton>
+          <NavButton onClick={nextImage} position="right" aria-label="Next image">
+            <FaChevronRight />
+          </NavButton>
+        </GalleryCarousel>
+        <ImageInfo>
           <h3>{images[currentIndex].title}</h3>
           <p>{images[currentIndex].description}</p>
         </ImageInfo>
-      </GalleryCarousel>
+      </GalleryContent>
     </GalleryContainer>
   );
 };
@@ -115,23 +114,12 @@ export default Gallery;
 const GalleryContainer = styled.div`
   margin: 0 auto;
   padding: 2rem 0;
-  position: relative;
-  overflow: hidden;
-  max-width: 100vw;
-  height: 100vh;
   max-width: 1250px;
   width: 100%;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 10px;
-    background: linear-gradient(90deg, ${shadowColors.join(", ")});
-    z-index: 1;
-  }
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const GalleryTitle = styled.h2`
@@ -146,10 +134,31 @@ const GalleryTitle = styled.h2`
   }
 `;
 
+const GalleryContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+const GalleryCarousel = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+
+  @media (min-width: ${theme.breakpoints.mobile}) {
+    height: 400px;
+  }
+`;
+
 const GalleryTrack = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   height: 100%;
   width: 100%;
   position: relative;
@@ -230,35 +239,15 @@ const NavButton = styled.button<{ position: "left" | "right" }>`
   }
 `;
 
-const GalleryCarousel = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-
-  @media (min-width: ${theme.breakpoints.mobile}) {
-    height: 400px;
-    padding: 0 40px;
-  }
-`;
-
-const ImageInfo = styled.div<{ visible: boolean }>`
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -180px;
+const ImageInfo = styled.div`
   text-align: center;
-  opacity: ${(props) => (props.visible ? "1" : "0")};
-  transition: opacity 0.3s ease;
   padding: 1rem;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin: 0 20px;
-  max-width: calc(100% - 40px);
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 500px;
 
   h3 {
     font-size: 1rem;
@@ -268,15 +257,11 @@ const ImageInfo = styled.div<{ visible: boolean }>`
 
   p {
     color: ${theme.colors.dark};
-    font-size: 1.10rem;
-    max-width: 100%;
+    font-size: 0.9rem;
     margin: 0 auto;
   }
 
   @media (min-width: ${theme.breakpoints.mobile}) {
-    bottom: -160px;
-    max-width: 500px;
-    margin: 0 auto;
     padding: 1.5rem;
 
     h3 {
@@ -284,20 +269,7 @@ const ImageInfo = styled.div<{ visible: boolean }>`
     }
 
     p {
-      font-size: 1.10rem;
-    }
-  }
-
-  @media (max-width: 400px) {
-    bottom: -200px;
-    padding: 0.8rem;
-
-    h3 {
-      font-size: 1.10rem;
-    }
-
-    p {
-      font-size: 1.10rem;
+      font-size: 1rem;
     }
   }
 `;
