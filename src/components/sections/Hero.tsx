@@ -188,7 +188,7 @@ const RightContent = styled.div`
     margin-top: -10rem;
 
     h1 {
-      text-align: center;
+      text-align: left;
     }
 
     p {

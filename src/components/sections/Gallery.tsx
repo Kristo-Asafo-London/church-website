@@ -166,8 +166,8 @@ const GalleryTrack = styled.div`
 
 const GalleryItem = styled.div<{ position: "left" | "center" | "right" }>`
   position: absolute;
-  width: ${(props) => (props.position === "center" ? "250px" : "150px")};
-  height: ${(props) => (props.position === "center" ? "250px" : "150px")};
+  width: ${(props) => (props.position === "center" ? "250px" : "120px")};
+  height: ${(props) => (props.position === "center" ? "250px" : "120px")};
   transition: all 0.5s ease;
   filter: ${(props) => (props.position !== "center" ? "blur(1px)" : "none")};
   opacity: ${(props) => (props.position !== "center" ? "0.8" : "1")};
@@ -186,7 +186,6 @@ const GalleryItem = styled.div<{ position: "left" | "center" | "right" }>`
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
-
   @media (min-width: ${theme.breakpoints.mobile}) {
     width: ${(props) => (props.position === "center" ? "350px" : "250px")};
     height: ${(props) => (props.position === "center" ? "350px" : "250px")};
