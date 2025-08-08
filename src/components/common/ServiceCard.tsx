@@ -79,9 +79,9 @@ const DescriptionText = styled.div<{ $color: string }>`
   margin-bottom: ${theme.spacing.small};
   display: inline-block;
   overflow: hidden;
-opacity: 0.7;
+  opacity: 1;
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;

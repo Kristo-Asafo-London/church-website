@@ -1,9 +1,8 @@
-
-import styled, { keyframes, css } from "styled-components";
-import { theme } from "../../styles/theme";
+import styled, { keyframes } from "styled-components";
 import { shadowColors } from "../common/common";
+import { lighten } from "polished";
+import { theme } from "../../styles/theme";
 
-// Sample data for the gallery images
 const galleryImages = [
   { id: 1, src: "/gallery/photos/kantanka1.png", alt: "Space" },
   { id: 2, src: "/gallery/photos/kantanka2.png", alt: "Galaxy" },
@@ -12,54 +11,64 @@ const galleryImages = [
   { id: 5, src: "/gallery/photos/kantanka5.png", alt: "Stars" },
   { id: 6, src: "/gallery/photos/kantanka6.png", alt: "Innovation" },
   { id: 7, src: "/gallery/photos/kantanka7.png", alt: "AI" },
+  { id: 9, src: "/gallery/photos/kantanka9.png", alt: "Technology" },
+  { id: 10, src: "/gallery/photos/kantanka10.png", alt: "Design" },
+  { id: 11, src: "/gallery/photos/kantanka11.png", alt: "Innovation" },
+  { id: 12, src: "/gallery/photos/kantanka12.png", alt: "Futuristic" },
+  { id: 13, src: "/gallery/photos/kantanka13.png", alt: "Space" },
+  { id: 14, src: "/gallery/photos/kantanka14.png", alt: "Galaxy" },
+  { id: 15, src: "/gallery/photos/kantanka15.png", alt: "Futuristic" },
+  { id: 16, src: "/gallery/photos/kantanka16.png", alt: "Tech" },
 ];
 
-// Gallery component
-const FuturisticGallery = () => {
-  const getRandomSize = (): "large" | "medium" | "small" => {
-    const sizes: ("large" | "medium" | "small")[] = ["large", "medium", "small"];
-    return sizes[Math.floor(Math.random() * sizes.length)];
-  };
+type GalleryImage = (typeof galleryImages)[number];
+
+function FuturisticGallery() {
+  const columns: GalleryImage[][] = [[], [], []];
+
+  galleryImages.forEach((img, i) => {
+    columns[i % 3].push(img);
+  });
 
   return (
-    <Container>
-      <SectionTitle>Gallery</SectionTitle>
-      <GalleryContainer>
-        {galleryImages.map((image) => (
-          <GalleryItem key={image.id} size={getRandomSize()}>
-            <GalleryImage src={image.src} alt={image.alt} />
-          </GalleryItem>
+    <GalleryWrapper>
+      <SectionTitle>Founder's Gallery</SectionTitle>
+      <ColumnsWrapper>
+        {columns.map((col, idx) => (
+          <Column key={idx}>
+            <ColumnInner speed={30 + idx * 10}>
+              {[...col, ...col].map((img, i) => (
+                <MasonryItem key={`${img.id}-${i}`}>
+                  <img src={img.src} alt={img.alt} />
+                </MasonryItem>
+              ))}
+            </ColumnInner>
+          </Column>
         ))}
-      </GalleryContainer>
-    </Container>
+      </ColumnsWrapper>
+    </GalleryWrapper>
   );
-};
+}
 
 export default FuturisticGallery;
 
-
-
-const float = keyframes`
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+// Animation for smooth vertical movement
+const scrollUp = keyframes`
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
 `;
 
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
-`;
-
-// Styled components
-const Container = styled.div`
+const GalleryWrapper = styled.div`
   margin: 0 auto;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.2);
+  padding: 6rem ${theme.spacing.large};
+  background: linear-gradient(135deg, ${lighten(0.45, theme.colors.light)} 0%, ${theme.colors.white} 100%);
   position: relative;
   overflow: hidden;
   margin-top: -4rem;
+  max-width: 1400px;
+  max-height: 100vh;
 
-    &::before {
+  &::before {
     content: "";
     position: absolute;
     top: 0;
@@ -74,15 +83,16 @@ const Container = styled.div`
 const SectionTitle = styled.h2`
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
   color: ${theme.colors.text};
   position: relative;
+  margin-bottom: 2rem;
 
   &::after {
     content: "";
     position: absolute;
-    bottom: -0.5rem;
+    bottom: -1rem;
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
@@ -92,85 +102,45 @@ const SectionTitle = styled.h2`
   }
 `;
 
-const GalleryContainer = styled.div`
+const ColumnsWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   gap: 20px;
-  padding: 1rem;
-
+  justify-content: center;
+  overflow: hidden; /* Prevent scroll from bleeding over title */
   position: relative;
-  overflow: hidden;
 `;
 
-const GalleryItem = styled.div<{ size: "large" | "medium" | "small" }>`
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: ${fadeIn} 1s ease-in-out;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+const Column = styled.div`
+  flex: 1;
+  overflow: hidden; /* Keep images inside column */
+`;
+
+const ColumnInner = styled.div<{ speed: number }>`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: ${scrollUp} ${({ speed }) => speed}s linear infinite;
+  animation-play-state: running;
 
   &:hover {
-    transform: scale(1.03);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     animation-play-state: paused;
   }
-
-  ${({ size }) => {
-    switch (size) {
-      case "large":
-        return css`
-          width: 60%;
-          height: 500px;
-          @media (max-width: 768px) {
-            width: 100%;
-            height: 300px;
-          }
-        `;
-      case "medium":
-        return css`
-          width: 45%;
-          height: 350px;
-          @media (max-width: 768px) {
-            width: 100%;
-            height: 250px;
-          }
-        `;
-      case "small":
-        return css`
-          width: 30%;
-          height: 200px;
-          @media (max-width: 768px) {
-            width: 100%;
-            height: 200px;
-          }
-        `;
-      default:
-        return css`
-          width: 35%;
-          height: 250px;
-          @media (max-width: 768px) {
-            width: 100%;
-            height: 200px;
-          }
-        `;
-    }
-  }}
 `;
 
-const GalleryImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-  animation: ${float} 6s ease-in-out infinite;
+const MasonryItem = styled.div`
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  background: white;
 
-  ${GalleryItem}:hover & {
-    transform: scale(1.1);
+  img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 `;
