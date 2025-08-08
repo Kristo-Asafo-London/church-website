@@ -48,7 +48,7 @@ function FuturisticGallery() {
       <ColumnsWrapper>
         {columns.map((col, idx) => (
           <Column key={idx}>
-            <ColumnInner speed={90 + idx * 10}>
+            <ColumnInner speed={70 + idx * 10}>
               {[...col, ...col].map((img, i) => (
                 <MasonryItem key={`${img.id}-${i}`}>
                   <img src={img.src} alt={img.alt} />
