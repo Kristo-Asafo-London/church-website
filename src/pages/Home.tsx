@@ -10,6 +10,7 @@ import Trustees, { trusteesData } from "../components/sections/Trustee";
 import Gallery, { achievementGallery } from "../components/sections/Gallery";
 import { ContactUs } from "../components/sections/ContactUs";
 import { Music } from "../components/sections/Music";
+import FuturisticGallery from '../components/sections/Photos';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -29,6 +30,7 @@ export const Home = () => {
       <Trustees trustees={trusteesData} />
       <ContactUs />
       <Music />
+      <FuturisticGallery /> 
     </HomeContainer>
   );
 };
