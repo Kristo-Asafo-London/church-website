@@ -28,8 +28,8 @@ export const Hero = () => {
         <RightContent>
           <HeroTitle>Service To Mankind Is Service To God</HeroTitle>
           <p>
-            Kristo Asafo Mission of Ghana, London Branch, registered under the charity commission of England and Wales with number 1151246, is
-            committed to serving humanity through compassion, technology, and community empowerment.
+            Kristo Asafo Mission of Ghana, London Branch, established on 14th March 2013 and registered under the charity commission of England and
+            Wales with number 1151246, is committed to serving humanity through compassion, technology, and community empowerment.
           </p>
           <ButtonGroup>
             <ActionButton onClick={() => handleScrollTo("about")}>About Us</ActionButton>
