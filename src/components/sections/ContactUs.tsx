@@ -19,8 +19,8 @@ export const ContactUs = () => {
           </IconCircle>
           <h3>WhatsApp</h3>
           <p>Chat with our team</p>
-          <ContactLink href="https://wa.me/+447961902404" target="_blank">
-            07961902404
+          <ContactLink href="https://wa.me/+447453299671" target="_blank">
+            07453299671
           </ContactLink>
         </ContactCard>
 
