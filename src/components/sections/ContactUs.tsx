@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { FaLinkedin, FaInstagram, FaWhatsapp, FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
-import { theme } from '../../styles/theme';
-import { lighten } from 'polished';
+import { FaInstagram, FaWhatsapp, FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock, FaYoutube, FaFacebook } from "react-icons/fa";
+import { theme } from "../../styles/theme";
+import { lighten } from "polished";
 import { shadowColors } from "../common/common";
 
 export const ContactUs = () => {
@@ -43,12 +43,23 @@ export const ContactUs = () => {
         </ContactCard>
 
         <ContactCard>
-          <IconCircle color={theme.colors.linkedin}>
-            <FaLinkedin size={24} />
+          <IconCircle color={theme.colors.primary}>
+            <FaYoutube size={24} />
           </IconCircle>
-          <h3>LinkedIn</h3>
-          <p>Connect professionally</p>
-          <ContactLink href="https://linkedin.com/in/kristoasafo" target="_blank">
+          <h3>YouTube</h3>
+          <p>Watch our latest videos</p>
+          <ContactLink href="https://youtu.be/Ne7GW6OGVu8?feature=shared" target="_blank">
+            Kristo Asafo London
+          </ContactLink>
+        </ContactCard>
+
+        <ContactCard>
+          <IconCircle color={theme.colors.facebook}>
+            <FaFacebook size={24} />
+          </IconCircle>
+          <h3>Facebook</h3>
+          <p>Connect with us on Facebook</p>
+          <ContactLink href="https://facebook.com/kristoasafo" target="_blank">
             kristoasafolondon
           </ContactLink>
         </ContactCard>
@@ -68,7 +79,7 @@ export const ContactUs = () => {
           <IconCircle color={theme.colors.secondary}>
             <FaMapMarkerAlt size={24} />
           </IconCircle>
-          <h3>Headquarters</h3>
+          <h3>International Headquarters</h3>
           <p> Accra NewTown</p>
           <Address>Greater Accra Region, Ghana</Address>
         </ContactCard>
@@ -76,18 +87,19 @@ export const ContactUs = () => {
 
       <HoursSection>
         <h2>
-          <FaClock style={{ marginRight: "10px" }} /> Office Hours
+          <FaClock style={{ marginRight: "10px" }} /> Worshipping Hours
         </h2>
         <HoursGrid>
           <div>
-            <h4>Weekdays</h4>
-            <p>Monday - Friday</p>
-            <p>8:00 - 17:00 UTC</p>
+            <h4>Sunday - Friday</h4>
+            <p>Zoom</p>
+            <p>19:30 - 21:00 GMT</p>
           </div>
           <div>
-            <h4>Weekends</h4>
-            <p>Saturday</p>
-            <p>15:00 - 18:00 UTC</p>
+            <h4>Saturday (Sabbath)</h4>
+            <p>Worshipping Place</p>
+            <p>Haberdashers’ Hatcham College - Jerningham Road SE14 5NY</p>
+            <p>15:00 - 18:00 GMT</p>
           </div>
         </HoursGrid>
       </HoursSection>
