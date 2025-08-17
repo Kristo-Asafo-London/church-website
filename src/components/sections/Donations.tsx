@@ -115,20 +115,6 @@ const DonationItems: DonationItem[] = [
     eventType: "Hope Family Centre",
   },
   {
-    id: 8,
-    type: "image",
-    url: "donations/hope_family.jpg",
-    caption: "Donating food items and cheque to Hope Family Centre As birthday celebration of our Founder in 2021",
-    eventType: "Hope Family Centre",
-  },
-  {
-    id: 8,
-    type: "image",
-    url: "donations/hope_family.jpg",
-    caption: "Donating food items and cheque to Hope Family Centre As birthday celebration of our Founder in 2021",
-    eventType: "Hope Family Centre",
-  },
-  {
     id: 1,
     type: "video",
     url: "https://www.youtube.com/embed/Ne7GW6OGVu8",
