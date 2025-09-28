@@ -37,6 +37,7 @@ export const Footer = () => {
         <FooterSection>
           <h3>Kristo Asafo London</h3>
           <p>Service To Mankind Is Service To God</p>
+          <img src="/images/mike-logo.jpg" alt="Kristo Asafo London Logo" style={{ width: "100px", marginTop: "10px" }} />
         </FooterSection>
 
         <FooterSection>
