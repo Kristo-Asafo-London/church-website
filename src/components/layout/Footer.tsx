@@ -1,6 +1,76 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 import { theme } from '../../styles/theme';
+import { useCallback } from 'react';
+
+export const Footer = () => {
+  const scrollToSection = useCallback((sectionId: string) => {
+    const target = document.getElementById(sectionId);
+    if (!target) return;
+
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 800; // Adjust scroll speed
+    let startTime: number | null = null;
+
+    const easeInOutQuad = (t: number, b: number, c: number, d: number): number => {
+      t /= d / 2;
+      if (t < 1) return c / 2 * t * t + b;
+      t--;
+      return -c / 2 * (t * (t - 2) - 1) + b;
+    };
+
+    const animation = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    };
+
+    requestAnimationFrame(animation);
+  }, []);
+
+  return (
+    <FooterContainer>
+      <FooterContent>
+        <FooterSection>
+          <h3>Kristo Asafo London</h3>
+          <p>Service To Mankind Is Service To God</p>
+          <img src="/images/mike-logo.jpg" alt="Kristo Asafo London Logo" style={{ width: "100px", marginTop: "10px" }} />
+        </FooterSection>
+
+        <FooterSection>
+          <h3>Quick Links</h3>
+          <FooterButton onClick={() => scrollToSection("home")}>Home</FooterButton>
+          <FooterButton onClick={() => scrollToSection("donations")}>Donations</FooterButton>
+          <FooterButton onClick={() => scrollToSection("about")}>About Us</FooterButton>
+          <FooterButton onClick={() => scrollToSection("trustees")}>Our Trustees</FooterButton>
+          <FooterButton onClick={() => scrollToSection("contact")}>Contact</FooterButton>
+          <FooterButton onClick={() => scrollToSection("music")}>Music</FooterButton>
+          <FooterButton onClick={() => scrollToSection("photos")}>Gallery</FooterButton>
+        </FooterSection>
+
+        <FooterSection>
+          <h3>Contact Info</h3>
+          <p>35 Bensham Grove, </p>
+          <p>Thornton Heath, CR7 8DD</p>
+          <p>Email: info@kristoasafolondon.co.uk</p>
+          <p>Phone: 07961902404</p>
+        </FooterSection>
+      </FooterContent>
+
+      <Copyright>
+        &copy; {new Date().getFullYear()} Kristo Asafo London. All rights reserved. <br />
+        <br />
+        Website by{" "}
+        <a href="https://flexsaas.co.uk" target="_blank" rel="noopener noreferrer">
+          FlexSaaS <img src="/flexsaas.png" alt="FlexSaaS Logo" style={{ width: "15px", marginLeft: "5px", verticalAlign: "middle" }} />
+        </a>
+      </Copyright>
+    </FooterContainer>
+  );
+};
 
 const FooterContainer = styled.footer`
   background-color: ${theme.colors.dark};
@@ -23,7 +93,7 @@ const FooterSection = styled.div`
     margin-bottom: ${theme.spacing.medium};
     font-size: 1.2rem;
   }
-  
+
   p {
     color: ${theme.colors.textLight};
     margin-bottom: ${theme.spacing.small};
@@ -31,20 +101,21 @@ const FooterSection = styled.div`
   }
 `;
 
-const FooterLink = styled(NavLink)`
+const FooterButton = styled.button`
+  background: none;
+  border: none;
   color: ${theme.colors.textLight};
   margin-bottom: ${theme.spacing.small};
   display: block;
-  text-decoration: none;
+  text-align: left;
+  font-size: 1.13rem;
+  cursor: pointer;
   transition: color 0.3s ease;
+  padding: 0;
+  font-family: inherit;
 
   &:hover {
-    color: ${theme.colors.accent};
-  }
-
-  &.active {
-    color: ${theme.colors.accent};
-    font-weight: 500;
+    color: ${theme.colors.white};
   }
 `;
 
@@ -55,37 +126,3 @@ const Copyright = styled.div`
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   color: ${theme.colors.textLight};
 `;
-
-export const Footer = () => {
-  return (
-    <FooterContainer>
-      <FooterContent>
-        <FooterSection>
-          <h3>ConsultPro</h3>
-          <p>Providing expert consulting services to help your business grow and succeed in today's competitive market.</p>
-        </FooterSection>
-        
-        <FooterSection>
-          <h3>Quick Links</h3>
-          <FooterLink to="/">Home</FooterLink>
-          <FooterLink to="/about">About Us</FooterLink>
-          <FooterLink to="/testimonials">Testimonials</FooterLink>
-          <FooterLink to="/hire-me">Hire Me</FooterLink>
-          <FooterLink to="/contact">Contact</FooterLink>
-        </FooterSection>
-        
-        <FooterSection>
-          <h3>Contact Info</h3>
-          <p>123 Business Ave</p>
-          <p>London, Postcode</p>
-          <p>Email: info@consultpro.com</p>
-          <p>Phone: (123) 456-7890</p>
-        </FooterSection>
-      </FooterContent>
-      
-      <Copyright>
-        &copy; {new Date().getFullYear()} ConsultPro. All rights reserved.
-      </Copyright>
-    </FooterContainer>
-  );
-};

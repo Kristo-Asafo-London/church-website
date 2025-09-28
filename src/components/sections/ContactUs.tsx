@@ -1,13 +1,140 @@
 import styled from 'styled-components';
+import { FaInstagram, FaWhatsapp, FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock, FaYoutube, FaFacebook } from "react-icons/fa";
+import { theme } from "../../styles/theme";
+import { lighten } from "polished";
+import { shadowColors } from "../common/common";
 
-import { FaLinkedin, FaInstagram, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
-import { ConsultationForm } from './ConsultationForm';
-import { theme } from '../../styles/theme';
+export const ContactUs = () => {
+  return (
+    <ContactContainer id="contact">
+      <ContactHeader>
+        <h1>Connect With Us</h1>
+        <p className="subtitle">We'd love to hear from you. Reach out through any of these channels and we'll respond as quickly as possible.</p>
+      </ContactHeader>
 
+      <ContactGrid>
+        <ContactCard>
+          <IconCircle color={theme.colors.whatsapp}>
+            <FaWhatsapp size={24} />
+          </IconCircle>
+          <h3>WhatsApp</h3>
+          <p>Chat with our team</p>
+          <ContactLink href="https://wa.me/+447453299671" target="_blank">
+            07453299671
+          </ContactLink>
+        </ContactCard>
+
+        <ContactCard>
+          <IconCircle color={theme.colors.accent}>
+            <FaPhone size={24} />
+          </IconCircle>
+          <h3>Phone</h3>
+          <p>Call our office</p>
+          <ContactLink href="tel:+447961902404">07961902404</ContactLink>
+        </ContactCard>
+
+        <ContactCard>
+          <IconCircle color={theme.colors.primary}>
+            <FaEnvelope size={24} />
+          </IconCircle>
+          <h3>Email</h3>
+          <p>Send us a message</p>
+          <ContactLink href="mailto:info@kristoasafolondon.co.uk">info@kristoasafolondon.co.uk</ContactLink>
+        </ContactCard>
+
+        <ContactCard>
+          <IconCircle color={theme.colors.primary}>
+            <FaYoutube size={24} />
+          </IconCircle>
+          <h3>YouTube</h3>
+          <p>Watch our latest videos</p>
+          <ContactLink href="https://youtu.be/Ne7GW6OGVu8?feature=shared" target="_blank">
+            Kristo Asafo London
+          </ContactLink>
+        </ContactCard>
+
+        <ContactCard>
+          <IconCircle color={theme.colors.facebook}>
+            <FaFacebook size={24} />
+          </IconCircle>
+          <h3>Facebook</h3>
+          <p>Connect with us on Facebook</p>
+          <ContactLink href="https://facebook.com/kristoasafo" target="_blank">
+            kristoasafolondon
+          </ContactLink>
+        </ContactCard>
+
+        <ContactCard>
+          <IconCircle color={theme.colors.instagram}>
+            <FaInstagram size={24} />
+          </IconCircle>
+          <h3>Instagram</h3>
+          <p>Follow our latest updates</p>
+          <ContactLink href="https://instagram.com/kristoasafo" target="_blank">
+            @kristoasafolondon
+          </ContactLink>
+        </ContactCard>
+
+        <ContactCard>
+          <IconCircle color={theme.colors.secondary}>
+            <FaMapMarkerAlt size={24} />
+          </IconCircle>
+          <h3>International Headquarters</h3>
+          <p> Accra NewTown</p>
+          <Address>Greater Accra Region, Ghana</Address>
+        </ContactCard>
+      </ContactGrid>
+
+      <HoursSection>
+        <h2>
+          <FaClock style={{ marginRight: "10px" }} /> Worshipping Hours
+        </h2>
+        <HoursGrid>
+          <div>
+            <h4>Sunday - Friday</h4>
+            <p>Zoom</p>
+            <p>19:30 - 21:00 GMT</p>
+          </div>
+          <div>
+            <h4>Saturday (Sabbath)</h4>
+            <p>Worshipping Place</p>
+            <p>Haberdashers’ Hatcham College - Jerningham Road SE14 5NY</p>
+            <p>15:00 - 18:00 GMT</p>
+          </div>
+        </HoursGrid>
+      </HoursSection>
+    </ContactContainer>
+  );
+};
+
+// Styled Components
 const ContactContainer = styled.div`
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem ${theme.spacing.large};
+  padding: 6rem ${theme.spacing.large};
+  background: linear-gradient(135deg, ${lighten(0.45, theme.colors.light)} 0%, ${theme.colors.white} 100%);
+  position: relative;
+  overflow: hidden;
+  max-width: 1250px;
+  width: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 10px;
+    background: linear-gradient(90deg, ${shadowColors.join(", ")});
+    z-index: 1;
+  }
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding: 4rem ${theme.spacing.medium};
+  }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    padding: 3rem ${theme.spacing.small};
+  }
 `;
 
 const ContactHeader = styled.div`
@@ -15,120 +142,134 @@ const ContactHeader = styled.div`
   margin-bottom: 4rem;
 
   h1 {
-    font-size: 2.5rem;
-    color: ${theme.colors.primary};
+    font-size: 2.8rem;
+    color: ${theme.colors.text};
     margin-bottom: ${theme.spacing.medium};
+    font-weight: 700;
   }
 
-  p {
+  .subtitle {
+    font-size: 1.2rem;
+    color: ${theme.colors.text};
     max-width: 700px;
     margin: 0 auto;
-    color: ${theme.colors.textLight};
+    line-height: 1.6;
   }
 `;
 
-const ContactContent = styled.div`
+const ContactGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
 `;
 
-const SocialSection = styled.div`
-  h2 {
-    font-size: 1.8rem;
-    color: ${theme.colors.primary};
-    margin-bottom: ${theme.spacing.large};
-  }
-`;
-
-const SocialItem = styled.a`
+const ContactCard = styled.div`
+  background: ${theme.colors.white};
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: ${theme.spacing.medium};
-  margin-bottom: ${theme.spacing.large};
-  color: ${theme.colors.text};
-  transition: color 0.3s ease;
 
   &:hover {
-    color: ${theme.colors.accent};
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   }
-
-  .icon {
-    font-size: 1.5rem;
-    color: ${theme.colors.primary};
-  }
-
-  span {
-    font-size: 1.1rem;
-  }
-`;
-
-const ContactInfo = styled.div`
-  margin-top: 3rem;
 
   h3 {
     font-size: 1.5rem;
-    margin-bottom: ${theme.spacing.medium};
-    color: ${theme.colors.primary};
+    color: ${theme.colors.text};
+    margin: 1.5rem 0 0.5rem;
   }
 
   p {
-    margin-bottom: ${theme.spacing.medium};
     color: ${theme.colors.textLight};
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
   }
 `;
 
-export const ContactUs = () => {
-  return (
-    <ContactContainer>
-      <ContactHeader>
-        <h1>Get In Touch</h1>
-        <p>
-          Have questions or ready to start your project? Reach out through any of 
-          these channels or fill out the form to schedule a consultation.
-        </p>
-      </ContactHeader>
+const IconCircle = styled.div<{ color: string }>`
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: ${({ color }) => lighten(0.35, color)};
+  color: ${({ color }) => color};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+`;
 
-      <ContactContent>
-        <SocialSection>
-          <h2>Connect With Me</h2>
+const ContactLink = styled.a`
+  color: ${theme.colors.text};
+  font-weight: 500;
+  margin-top: 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  word-break: break-all;
 
-          <SocialItem href="https://linkedin.com/in/yourprofile" target="_blank">
-            <div className="icon"><FaLinkedin /></div>
-            <span>LinkedIn: /Judith- -consulting</span>
-          </SocialItem>
+  &:hover {
+    color: ${theme.colors.accent};
+    text-decoration: underline;
+  }
+`;
 
-          <SocialItem href="https://instagram.com/yourprofile" target="_blank">
-            <div className="icon"><FaInstagram /></div>
-            <span>Instagram: @Judith _consulting</span>
-          </SocialItem>
+const Address = styled.p`
+  font-style: italic;
+  color: ${theme.colors.textLight};
+  margin-top: 1rem;
+`;
 
-          <SocialItem href="https://wa.me/yournumber" target="_blank">
-            <div className="icon"><FaWhatsapp /></div>
-            <span>WhatsApp: +1 (555) 123-4567</span>
-          </SocialItem>
+const HoursSection = styled.div`
+  background: ${lighten(0.4, theme.colors.white)};
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.09);
 
-          <SocialItem href="mailto:Judith@consulting.com">
-            <div className="icon"><FaEnvelope /></div>
-            <span>Email: Judith@consulting.com</span>
-          </SocialItem>
+  h2 {
+    font-size: 1.8rem;
+    color: ${theme.colors.text};
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
 
-          <ContactInfo>
-            <h3>Office Hours</h3>
-            <p>Monday - Friday: 9am - 5pm EST</p>
-            <p>Weekends: By appointment only</p>
-          </ContactInfo>
-        </SocialSection>
+const HoursGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 500px;
+  margin: 0 auto;
+  
 
-        <div>
-          <h2>Send a Message</h2>
-          <ConsultationForm />
-        </div>
-      </ContactContent>
-    </ContactContainer>
-  );
-};
+  h4 {
+    color: ${theme.colors.textLight};
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  p {
+    color: ${theme.colors.textLight};
+    margin-bottom: 0.3rem;
+  }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+  }
+`;

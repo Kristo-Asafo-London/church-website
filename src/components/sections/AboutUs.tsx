@@ -1,12 +1,97 @@
 import styled from 'styled-components';
-
-import { FaChartLine, FaLightbulb, FaHandshake } from 'react-icons/fa';
+import { FaChurch, FaLightbulb, FaCogs, FaHandsHelping } from 'react-icons/fa';
 import { theme } from '../../styles/theme';
+import { lighten } from 'polished';
+import { shadowColors } from "../common/common";
+
+export const AboutUs = () => {
+  return (
+    <AboutContainer id="about">
+      <AboutHeader>
+        <h1>Kristo Asafo, London</h1>
+        <p className="subtitle">
+          Kristo Asafo Mission, London Branch is progressive organization founded by Apostle Dr. Eng. Kwadwo Safo Kantanka, and registered under the
+          charity commission England and Wales with number 1151246. We are dedicated to spiritual growth, technological innovation, and community
+          development.
+        </p>
+      </AboutHeader>
+
+      <AboutContent>
+        <ProfileImage>
+          <img src="/images/kantanka22.png" alt="Apostle Dr. Eng. Kwadwo Safo Kantanka" />
+          <ImageCaption>Founder: Apostle Dr. Eng. Kwadwo Safo Kantanka</ImageCaption>
+        </ProfileImage>
+
+        <BioContent>
+          <h2>Our Mission & Vision</h2>
+          <p>
+            Kristo Asafo (Christ Reformed Church) was established to promote Christianity through practical demonstration of God's power in science
+            and technology. Under the visionary leadership of Apostle Dr. Ing. Kwadwo Safo Kantanka, we combine spiritual principles with
+            technological advancement to transform lives and communities.
+          </p>
+          <p>
+            Our unique approach bridges the gap between faith and innovation, demonstrating that spirituality and scientific progress can coexist
+            harmoniously for the betterment of humanity.
+          </p>
+
+          <ExpertiseSection>
+            <h3>Our Core Principles</h3>
+
+            {[
+              {
+                icon: <FaChurch />,
+                title: "Spiritual Foundation",
+                desc: "Rooted in Christian principles, we emphasize moral uprightness, discipline, and the practical application of faith in daily life.",
+              },
+              {
+                icon: <FaLightbulb />,
+                title: "Technological Innovation",
+                desc: "Pioneering African technological solutions through Kantanka Automobiles and other inventions that demonstrate indigenous engineering excellence.",
+              },
+              {
+                icon: <FaCogs />,
+                title: "Self-Reliance",
+                desc: "Promoting economic independence through vocational training, agricultural development, and local manufacturing initiatives.",
+              },
+              {
+                icon: <FaHandsHelping />,
+                title: "Community Development",
+                desc: "Implementing programs that address education, healthcare, and infrastructure needs in underserved communities across Ghana.",
+              },
+            ].map(({ icon, title, desc }) => (
+              <ExpertiseItem key={title}>
+                <IconContainer>{icon}</IconContainer>
+                <div className="content">
+                  <h4>{title}</h4>
+                  <p>{desc}</p>
+                </div>
+              </ExpertiseItem>
+            ))}
+          </ExpertiseSection>
+        </BioContent>
+      </AboutContent>
+    </AboutContainer>
+  );
+};
 
 const AboutContainer = styled.div`
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem ${theme.spacing.large};
+  padding: 6rem ${theme.spacing.large};
+  background: linear-gradient(135deg, ${lighten(0.45, theme.colors.light)} 0%, ${theme.colors.white} 100%);
+  position: relative;
+  overflow: hidden;
+  max-width: 1200px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, ${shadowColors.join(", ")});
+    z-index: 1;
+  }
 `;
 
 const AboutHeader = styled.div`
@@ -14,24 +99,41 @@ const AboutHeader = styled.div`
   margin-bottom: 4rem;
 
   h1 {
-    font-size: 2.5rem;
-    color: ${theme.colors.primary};
+    font-size: 2.8rem;
+    color: ${theme.colors.text};
     margin-bottom: ${theme.spacing.medium};
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: ${theme.colors.light};
+      border-radius: 2px;
+    }
   }
 
   p.subtitle {
     font-size: 1.2rem;
-    color: ${theme.colors.textLight};
-    max-width: 700px;
+    color: ${theme.colors.text};
+    max-width: 800px;
     margin: 0 auto;
+    line-height: 1.6;
   }
 `;
 
 const AboutContent = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 4rem;
   align-items: center;
+  margin-bottom: 4rem;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
@@ -39,23 +141,37 @@ const AboutContent = styled.div`
 `;
 
 const ProfileImage = styled.div`
+  position: relative;
   img {
     width: 100%;
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.02);
+    }
   }
+`;
+
+const ImageCaption = styled.p`
+  text-align: center;
+  margin-top: 1rem;
+  font-style: italic;
+  color: ${theme.colors.textLight};
 `;
 
 const BioContent = styled.div`
   h2 {
     font-size: 2rem;
-    color: ${theme.colors.primary};
-    margin-bottom: ${theme.spacing.medium};
+    color: ${theme.colors.text};
+    margin-bottom: ${theme.spacing.large};
+    font-weight: 600;
   }
 
   p {
     margin-bottom: ${theme.spacing.large};
     line-height: 1.7;
+    color: ${theme.colors.text};
   }
 `;
 
@@ -63,108 +179,54 @@ const ExpertiseSection = styled.div`
   margin-top: 3rem;
 
   h3 {
-    font-size: 1.5rem;
-    margin-bottom: ${theme.spacing.large};
-    color: ${theme.colors.primary};
+    font-size: 1.75rem;
+    margin-bottom: ${theme.spacing.xlarge};
+    color: ${theme.colors.text};
+    position: relative;
+    padding-bottom: ${theme.spacing.small};
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: ${theme.colors.light};
+    }
   }
+`;
+
+const IconContainer = styled.div`
+  background: ${theme.colors.white};
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${theme.colors.light};
+  font-size: 1.25rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
 `;
 
 const ExpertiseItem = styled.div`
   display: flex;
   align-items: flex-start;
-  gap: ${theme.spacing.medium};
-  margin-bottom: ${theme.spacing.large};
-
-  .icon {
-    color: ${theme.colors.accent};
-    font-size: 1.5rem;
-    margin-top: 4px;
-  }
+  gap: ${theme.spacing.large};
+  margin-bottom: ${theme.spacing.xlarge};
 
   .content {
     h4 {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       margin-bottom: ${theme.spacing.small};
+      color: ${theme.colors.textLight};
     }
 
     p {
       margin-bottom: 0;
-      color: ${theme.colors.textLight};
+      color: ${theme.colors.text};
     }
   }
 `;
-
-export const AboutUs = () => {
-  return (
-    <AboutContainer>
-      <AboutHeader>
-        <h1>About Judith  </h1>
-        <p className="subtitle">
-          Strategic business consultant with 12+ years experience helping 
-          entrepreneurs and small businesses achieve sustainable growth
-        </p>
-      </AboutHeader>
-
-      <AboutContent>
-        <ProfileImage>
-          <img 
-            src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-            alt="Judith  " 
-          />
-        </ProfileImage>
-
-        <BioContent>
-          <h2>My Story</h2>
-          <p>
-            After a successful career in corporate strategy at Fortune 500 companies, 
-            I founded my consulting practice to bring enterprise-level strategic 
-            thinking to small businesses and startups. My approach combines analytical 
-            rigor with practical, actionable advice tailored to each client's unique needs.
-          </p>
-          <p>
-            What sets me apart is my focus on not just identifying opportunities, 
-            but implementing solutions. I work side-by-side with clients to ensure 
-            strategies are executed effectively and deliver measurable results.
-          </p>
-
-          <ExpertiseSection>
-            <h3>My Expertise</h3>
-
-            <ExpertiseItem>
-              <div className="icon"><FaChartLine /></div>
-              <div className="content">
-                <h4>Business Strategy</h4>
-                <p>
-                  Developing clear roadmaps for growth, competitive positioning, 
-                  and long-term success.
-                </p>
-              </div>
-            </ExpertiseItem>
-
-            <ExpertiseItem>
-              <div className="icon"><FaLightbulb /></div>
-              <div className="content">
-                <h4>Innovation Consulting</h4>
-                <p>
-                  Helping businesses identify new opportunities and develop 
-                  innovative solutions to market challenges.
-                </p>
-              </div>
-            </ExpertiseItem>
-
-            <ExpertiseItem>
-              <div className="icon"><FaHandshake /></div>
-              <div className="content">
-                <h4>Client-Centered Approach</h4>
-                <p>
-                  Tailored solutions with ongoing support to ensure successful 
-                  implementation.
-                </p>
-              </div>
-            </ExpertiseItem>
-          </ExpertiseSection>
-        </BioContent>
-      </AboutContent>
-    </AboutContainer>
-  );
-};
