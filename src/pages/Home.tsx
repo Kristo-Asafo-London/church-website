@@ -11,6 +11,7 @@ import Gallery, { achievementGallery } from "../components/sections/Gallery";
 import { ContactUs } from "../components/sections/ContactUs";
 import { Music } from "../components/sections/Music";
 import FuturisticGallery from '../components/sections/Photos';
+import { Quiz } from "../components/sections/Quiz";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -30,7 +31,8 @@ export const Home = () => {
       <Trustees trustees={trusteesData} />
       <ContactUs />
       <Music />
-      <FuturisticGallery /> 
+      <FuturisticGallery />
+      <Quiz />
     </HomeContainer>
   );
 };

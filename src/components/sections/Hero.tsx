@@ -61,7 +61,7 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("/images/stars.jpeg");
+  background-image: url("https://res.cloudinary.com/dd5niuw1r/image/upload/v1762095620/stars_y63byk.jpg");
   background-size: cover;
   background-position: center;
 
