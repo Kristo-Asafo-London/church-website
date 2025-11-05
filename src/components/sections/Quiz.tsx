@@ -60,7 +60,7 @@ export const Quiz = () => {
   const [startTime] = useState(Date.now());
 
   return (
-    <QuizContainer loaded={loaded} id="music">
+    <QuizContainer loaded={loaded} id="quiz">
       {!loaded && (
         <LoadingOverlay loaded={loaded}>
           <PacmanLoader color={theme.colors.light} size={50} />

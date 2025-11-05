@@ -48,6 +48,7 @@ export const Footer = () => {
           <FooterButton onClick={() => scrollToSection("trustees")}>Our Trustees</FooterButton>
           <FooterButton onClick={() => scrollToSection("contact")}>Contact</FooterButton>
           <FooterButton onClick={() => scrollToSection("music")}>Music</FooterButton>
+          <FooterButton onClick={() => scrollToSection("quiz")}>Quiz</FooterButton>
           <FooterButton onClick={() => scrollToSection("photos")}>Gallery</FooterButton>
         </FooterSection>
 

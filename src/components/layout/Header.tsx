@@ -64,6 +64,9 @@ export const Header = () => {
             <button onClick={() => scrollToSection("music")}>Music</button>
           </NavItem>
           <NavItem>
+            <button onClick={() => scrollToSection("quiz")}>Quiz</button>
+          </NavItem>
+          <NavItem>
             <button onClick={() => scrollToSection("photos")}>Gallery</button>
           </NavItem>
         </NavItems>
