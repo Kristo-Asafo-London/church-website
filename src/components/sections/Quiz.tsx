@@ -3,17 +3,28 @@ import { useEffect, useState } from "react";
 import { theme } from "../../styles/theme";
 import { PacmanLoader } from "react-spinners";
 
-
 export const Quiz = () => {
   const [loaded, setLoaded] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [minimumLoadTimePassed, setMinimumLoadTimePassed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if mobile on mount and on resize
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const handleWheel = (e: WheelEvent) => {
-      const iframe = document.querySelector("iframe");
-      if (iframe && iframe.contains(e.target as Node)) {
-        e.preventDefault();
+      // Only prevent wheel events on desktop
+      if (!isMobile) {
+        const iframe = document.querySelector("iframe");
+        if (iframe && iframe.contains(e.target as Node)) {
+          e.preventDefault();
+        }
       }
     };
 
@@ -37,10 +48,11 @@ export const Quiz = () => {
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("resize", checkMobile);
       clearInterval(interval);
       clearTimeout(minimumTimer);
     };
-  }, []);
+  }, [isMobile]); // Add isMobile as dependency
 
   const handleIframeLoad = () => {
     // Only set as loaded if minimum time has passed
@@ -60,7 +72,7 @@ export const Quiz = () => {
   const [startTime] = useState(Date.now());
 
   return (
-    <QuizContainer loaded={loaded} id="quiz">
+    <QuizContainer loaded={loaded} id="quiz" $isMobile={isMobile}>
       {!loaded && (
         <LoadingOverlay loaded={loaded}>
           <PacmanLoader color={theme.colors.light} size={50} />
@@ -72,17 +84,17 @@ export const Quiz = () => {
         title="Kantanka Quiz"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-        scrolling="no"
+        scrolling={isMobile ? "yes" : "no"}
         onLoad={handleIframeLoad}
       />
     </QuizContainer>
   );
 };
 
-const QuizContainer = styled.div<{ loaded: boolean }>`
+const QuizContainer = styled.div<{ loaded: boolean; $isMobile: boolean }>`
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  overflow: ${({ $isMobile }) => ($isMobile ? "auto" : "hidden")};
   position: relative;
 
   iframe {
@@ -95,7 +107,19 @@ const QuizContainer = styled.div<{ loaded: boolean }>`
   }
 
   @media (max-width: 768px) {
-    height: 120vh; // Adjust height for smaller screens
+    height: auto;
+    min-height: 100vh;
+
+    iframe {
+      height: 150vh; // Make iframe taller to ensure content fits
+      min-height: 100vh;
+    }
+  }
+
+  @media (max-width: 480px) {
+    iframe {
+      height: 180vh; // Even taller for very small screens
+    }
   }
 `;
 
